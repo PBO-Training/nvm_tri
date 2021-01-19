@@ -3,7 +3,6 @@ package com.demo.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.demo.Application.othergirl.OtherGirl;
@@ -31,6 +30,8 @@ public class DemoApplication {
 //		System.out.println("> Sau khi IoC Container destroy Girl");
 		// ==============End Day18==============
 
+		
+		
 //		BoyService boyService = context.getBean(BoyService.class);
 //		Boy boy = boyService.getNameBoy();
 //		System.out.println(boy);
@@ -50,7 +51,9 @@ public class DemoApplication {
 	        } catch (Exception e) {
 	            System.out.println("Bean Girl không tồn tại");
 	        }
+	     // ==============End Day19==============
 
 	}
+	
 
 }
