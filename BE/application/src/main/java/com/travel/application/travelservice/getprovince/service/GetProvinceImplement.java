@@ -19,12 +19,7 @@ public class GetProvinceImplement implements GetProvinceService {
 	public IRepoGetProvince repo;
 	
 	
-	/*
-	 * @Override public List<GetProvinceReponse> get() { List<ProvinceEntity>
-	 * listProvince = repo.findAll(); List<GetProvinceReponse> abc =
-	 * listProvince.stream().map(GetProvinceReponse::new).collect(Collectors.toList(
-	 * )); return abc; }
-	 */
+
 	@Override
 	public BaseResponse get() {
 		BaseResponse cmRep = new BaseResponse();

@@ -67,9 +67,7 @@ public class CarEntity {
 		return price;
 	}
 
-	public void setPrice(long price) {
-		this.price = price;
-	}
+
 
 	public int getAmount() {
 		return amount;
