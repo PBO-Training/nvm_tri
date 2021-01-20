@@ -88,11 +88,11 @@ public class TripEntity {
 	@JoinColumn(name="status", nullable = false)
 	private StatusTripEntity status;
 
-	protected StatusTripEntity getStatus() {
+	public StatusTripEntity getStatus() {
 		return status;
 	}
 
-	protected void setStatus(StatusTripEntity status) {
+	public void setStatus(StatusTripEntity status) {
 		this.status = status;
 	}
 

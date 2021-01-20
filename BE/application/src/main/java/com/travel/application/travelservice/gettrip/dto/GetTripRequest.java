@@ -1,26 +1,35 @@
-package com.travel.application.travelservice.createtrip.dto;
+package com.travel.application.travelservice.gettrip.dto;
 
 import java.sql.Date;
 
-public class CreateTripRequest {
+public class GetTripRequest {
 
-	private Date date;
-	private int carID;
-	private int routeID;
-	private int statusID;
+	private int tripID;
 
-	public CreateTripRequest(Date date, int carID, int routeID, int statusID) {
+	public int getTripID() {
+		return tripID;
+	}
+
+	public void setTripID(int tripID) {
+		this.tripID = tripID;
+	}
+
+	public GetTripRequest() {
+	}
+
+	public GetTripRequest(int tripID, Date date, int carID, int routeID, int statusID) {
 		super();
+		this.tripID = tripID;
 		this.date = date;
 		this.carID = carID;
 		this.routeID = routeID;
 		this.statusID = statusID;
 	}
 
-	public CreateTripRequest() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private Date date;
+	private int carID;
+	private int routeID;
+	private int statusID;
 
 	public Date getDate() {
 		return date;
@@ -53,5 +62,4 @@ public class CreateTripRequest {
 	public void setStatusID(int statusID) {
 		this.statusID = statusID;
 	}
-
 }

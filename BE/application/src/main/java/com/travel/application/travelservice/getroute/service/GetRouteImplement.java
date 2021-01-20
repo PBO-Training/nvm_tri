@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.travel.application.common.base.BaseResponse;
 import com.travel.application.entity.ProvinceEntity;
 import com.travel.application.entity.RouteEntity;
-import com.travel.application.travelservice.getprovince.dto.GetProvinceReponse;
-import com.travel.application.travelservice.getprovince.dto.GetProvinceRequest;
 import com.travel.application.travelservice.getprovince.service.IRepoGetProvince;
 import com.travel.application.travelservice.getroute.dto.GetRouteRequest;
 import com.travel.application.travelservice.getroute.dto.GetRouteResponse;

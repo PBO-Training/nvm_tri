@@ -23,22 +23,22 @@ public class StatusTicketEntity {
 	private String name;
 	@OneToMany(mappedBy = "status", cascade =  CascadeType.ALL)
 	List <TicketEntity> trips;
-	protected int getStatusID() {
+	public int getStatusID() {
 		return statusID;
 	}
-	protected void setStatusID(int statusID) {
+	public void setStatusID(int statusID) {
 		this.statusID = statusID;
 	}
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
-	protected void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	protected List<TicketEntity> getTrips() {
+	public List<TicketEntity> getTrips() {
 		return trips;
 	}
-	protected void setTrips(List<TicketEntity> trips) {
+	public void setTrips(List<TicketEntity> trips) {
 		this.trips = trips;
 	}
 }
