@@ -3,34 +3,31 @@ package com.travel.application.travelservice.getprovince.dto;
 import com.travel.application.entity.ProvinceEntity;
 
 public class GetProvinceReponse {
-	private int provinceID;
+	private Long provinceID;
 	private String code;
 	private String name;
 
 	public GetProvinceReponse() {
 		
-		// TODO Auto-generated constructor stub
 	}
-
-	public GetProvinceReponse(int provinceID, String code, String name) {
-		
+	public GetProvinceReponse(Long provinceID, String code, String name) {
+		super();
 		this.provinceID = provinceID;
 		this.code = code;
 		this.name = name;
 	}
-
-	public GetProvinceReponse(ProvinceEntity provinceEntity) {
-		super();
-		this.provinceID = provinceEntity.getProvinceID();
-		this.code = provinceEntity.getCode();
-		this.name = provinceEntity.getName();
+	
+	public GetProvinceReponse(ProvinceEntity entity) {
+		this.provinceID = entity.getProvinceID();
+		this.code = entity.getCode();
+		this.name = entity.getName();
 	}
 
-	public int getProvinceID() {
+	public Long getProvinceID() {
 		return provinceID;
 	}
 
-	public void setProvinceID(int provinceID) {
+	public void setProvinceID(Long provinceID) {
 		this.provinceID = provinceID;
 	}
 
@@ -49,4 +46,6 @@ public class GetProvinceReponse {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 }

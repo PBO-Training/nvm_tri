@@ -15,66 +15,59 @@ import javax.persistence.Table;
 @Table(name = "ticket")
 public class TicketEntity {
 
-	public TicketEntity() {
-
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ticket_id", nullable = false)
-	private int ticketID;
+	private Long ticketID;
 
 	@Column(name = "ticket_code", length = 10, nullable = false)
 	private String ticketCode;
-	
+
 	@Column(name = "date", nullable = false)
 	private Date date;
-	
+
 	@Column(name = "seats", length = 3, nullable = false)
 	private String seats;
-	
+
 	@Column(name = "amount_seats", nullable = false)
 	private int amountSeat;
-	
+
 	@Column(name = "price", length = 10, nullable = false)
 	private double price;;
 
 	@ManyToOne
 	@JoinColumn(name = "trip_id", nullable = false)
 	private TripEntity trip;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity userId;
-	
 
 	@ManyToOne
-	@JoinColumn(name="status")
+	@JoinColumn(name = "status")
 	private StatusTicketEntity status;
-	
 
-
-	protected int getAmountSeat() {
-		return amountSeat;
+	public TicketEntity() {
 	}
 
-	protected void setAmountSeat(int amountSeat) {
+	public TicketEntity(Long ticketID, String ticketCode, Date date, String seats, int amountSeat, double price,
+			TripEntity trip, UserEntity userId, StatusTicketEntity status) {
+		this.ticketID = ticketID;
+		this.ticketCode = ticketCode;
+		this.date = date;
+		this.seats = seats;
 		this.amountSeat = amountSeat;
-	}
-
-	protected double getPrice() {
-		return price;
-	}
-
-	protected void setPrice(double price) {
 		this.price = price;
+		this.trip = trip;
+		this.userId = userId;
+		this.status = status;
 	}
 
-	public int getTicketID() {
+	public Long getTicketID() {
 		return ticketID;
 	}
 
-	public void setTicketID(int ticketID) {
+	public void setTicketID(Long ticketID) {
 		this.ticketID = ticketID;
 	}
 
@@ -102,33 +95,44 @@ public class TicketEntity {
 		this.seats = seats;
 	}
 
+	public int getAmountSeat() {
+		return amountSeat;
+	}
 
-	
-	protected TripEntity getTrip() {
+	public void setAmountSeat(int amountSeat) {
+		this.amountSeat = amountSeat;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public TripEntity getTrip() {
 		return trip;
 	}
 
-	protected void setTrip(TripEntity trip) {
+	public void setTrip(TripEntity trip) {
 		this.trip = trip;
 	}
 
-	protected StatusTicketEntity getStatus() {
-		return status;
-	}
-
-	protected void setStatus(StatusTicketEntity status) {
-		this.status = status;
-	}
-	
-	
-	protected UserEntity getUserId() {
+	public UserEntity getUserId() {
 		return userId;
 	}
 
-	protected void setUserId(UserEntity userId) {
+	public void setUserId(UserEntity userId) {
 		this.userId = userId;
 	}
 
-	
-	
+	public StatusTicketEntity getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusTicketEntity status) {
+		this.status = status;
+	}
+
 }

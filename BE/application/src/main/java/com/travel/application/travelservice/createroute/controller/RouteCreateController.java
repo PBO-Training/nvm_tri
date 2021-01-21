@@ -23,8 +23,8 @@ public class RouteCreateController {
 
 	@PostMapping("/save")
 	@ResponseBody
-	public String create(@RequestBody CreateRouteRequest CreateProvinceRequest) {
-		service.save(CreateProvinceRequest);
+	public String create(@RequestBody CreateRouteRequest req) {
+		service.save(req);
 		return "succes";
 
 	}

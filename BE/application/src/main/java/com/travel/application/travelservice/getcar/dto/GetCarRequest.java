@@ -1,9 +1,7 @@
 package com.travel.application.travelservice.getcar.dto;
 
-import com.travel.application.entity.CarEntity;
-
 public class GetCarRequest {
-	private int carID;
+	private Long carID;
 
 	private String code;
 
@@ -18,7 +16,7 @@ public class GetCarRequest {
 	public GetCarRequest() {
 	}
 
-	public GetCarRequest(int carID, String code, String name, String licensePlates, double price, int amount) {
+	public GetCarRequest(Long carID, String code, String name, String licensePlates, double price, int amount) {
 		this.carID = carID;
 		this.code = code;
 		this.name = name;
@@ -27,20 +25,11 @@ public class GetCarRequest {
 		this.amount = amount;
 	}
 
-	public GetCarRequest(CarEntity entity) {
-		this.carID = entity.getCarID();
-		this.code = entity.getCode();
-		this.name = entity.getName();
-		this.licensePlates = entity.getLicensePlates();
-		this.price = entity.getPrice();
-		this.amount = entity.getAmount();
-	}
-
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 

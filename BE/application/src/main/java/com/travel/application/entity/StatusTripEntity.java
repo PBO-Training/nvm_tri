@@ -18,18 +18,27 @@ public class StatusTripEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "status_id", nullable = false)
-	private int statusID;
+	private Long statusID;
 	@Column(name = "name", nullable = false)
 	private String name;
-	
-	@OneToMany(mappedBy = "status", cascade =  CascadeType.ALL)
-	List <TripEntity> trips;
 
-	public int getStatusID() {
+	@OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+	List<TripEntity> trips;
+
+	public StatusTripEntity() {
+	}
+
+	public StatusTripEntity(Long statusID, String name, List<TripEntity> trips) {
+		this.statusID = statusID;
+		this.name = name;
+		this.trips = trips;
+	}
+
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
 
@@ -49,4 +58,5 @@ public class StatusTripEntity {
 		this.trips = trips;
 	}
 	
+
 }

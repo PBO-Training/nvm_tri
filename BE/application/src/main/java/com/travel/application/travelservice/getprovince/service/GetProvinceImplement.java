@@ -24,12 +24,13 @@ public class GetProvinceImplement implements GetProvinceService {
 	public BaseResponse get() {
 		BaseResponse cmRep = new BaseResponse();
 		List<ProvinceEntity> listProvince = repo.findAll();
-	
+//		Page<ProvinceEntity> page =repo.findAll(PageRequest.of(1, 5));
 		if (listProvince.isEmpty()) {
 			cmRep.setError("ko ton tai");
 			return cmRep;
 		}
 		List<GetProvinceReponse> rep = listProvince.stream().map(GetProvinceReponse::new).collect(Collectors.toList());
+	//	List<GetProvinceReponse> rep= page.stream().map(GetProvinceReponse::new).collect(Collectors.toList());
 		/*
 		 * 	List<GetProvinceReponse> xxx = new ArrayList<>();
 		 * for(int i = 0; i < listProvince.size(); i++) { xxx.add(new
@@ -38,6 +39,7 @@ public class GetProvinceImplement implements GetProvinceService {
 		 * }
 		 */
 //		System.out.println(xxx);
+		
 		cmRep.setContent(rep);
 		return cmRep;
 	}

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.travel.application.entity.RouteEntity;
 
 @Repository
-public interface IRepoCreateRoute extends JpaRepository<RouteEntity, Integer> {
+public interface IRepoCreateRoute extends JpaRepository<RouteEntity, Long> {
 	
 }

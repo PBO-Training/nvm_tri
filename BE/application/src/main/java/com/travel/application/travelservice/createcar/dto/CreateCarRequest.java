@@ -1,7 +1,7 @@
 package com.travel.application.travelservice.createcar.dto;
 
 public class CreateCarRequest {
-	private int carID;
+	private Long carID;
 
 	private String code;
 
@@ -14,10 +14,12 @@ public class CreateCarRequest {
 	private int amount;
 
 	public CreateCarRequest() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public CreateCarRequest(int carID, String code, String name, String licensePlates, double price, int amount) {
-
+	public CreateCarRequest(Long carID, String code, String name, String licensePlates, double price, int amount) {
+		super();
 		this.carID = carID;
 		this.code = code;
 		this.name = name;
@@ -26,11 +28,11 @@ public class CreateCarRequest {
 		this.amount = amount;
 	}
 
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 
@@ -73,5 +75,6 @@ public class CreateCarRequest {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+
 
 }

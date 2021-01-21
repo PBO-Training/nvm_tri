@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.travel.application.entity.ProvinceEntity;
 @Repository
-public interface IRepo  extends JpaRepository<ProvinceEntity, Integer>{	
+public interface IRepo  extends JpaRepository<ProvinceEntity, Long>{	
 
 }

@@ -20,7 +20,7 @@ public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false)
-	private int userID;
+	private Long userID;
 
 	@Column(name = "username", length = 45, nullable = false)
 	private String userName;
@@ -31,7 +31,7 @@ public class UserEntity {
 	@Column(name = "create_time", nullable = false)
 	private Date createTime;
 
-	@Column(name = "modify_time", nullable = false)
+	@Column(name = "modify_time")
 	private Date modifyTime;
 
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
@@ -44,35 +44,27 @@ public class UserEntity {
 	@JoinColumn(name = "role_id", nullable = false)
 	private RoleEntity roleID;
 
-	protected List<InfoEntity> getInfos() {
-		return infos;
+	public UserEntity() {
 	}
 
-	protected void setInfos(List<InfoEntity> infos) {
+	public UserEntity(Long userID, String userName, String password, Date createTime, Date modifyTime,
+			List<InfoEntity> infos, List<TicketEntity> tickets, RoleEntity roleID) {
+		super();
+		this.userID = userID;
+		this.userName = userName;
+		this.password = password;
+		this.createTime = createTime;
+		this.modifyTime = modifyTime;
 		this.infos = infos;
-	}
-
-	protected RoleEntity getRoleID() {
-		return roleID;
-	}
-
-	protected void setRoleID(RoleEntity roleID) {
+		this.tickets = tickets;
 		this.roleID = roleID;
 	}
 
-	protected List<TicketEntity> getTickets() {
-		return tickets;
-	}
-
-	protected void setTickets(List<TicketEntity> tickets) {
-		this.tickets = tickets;
-	}
-
-	public int getUserID() {
+	public Long getUserID() {
 		return userID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(Long userID) {
 		this.userID = userID;
 	}
 
@@ -92,22 +84,44 @@ public class UserEntity {
 		this.password = password;
 	}
 
-	
-
-	protected Date getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	protected void setCreateTime(Date createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
-	protected Date getModifyTime() {
+	public Date getModifyTime() {
 		return modifyTime;
 	}
 
-	protected void setModifyTime(Date modifyTime) {
+	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
+	}
+
+	public List<InfoEntity> getInfos() {
+		return infos;
+	}
+
+	public void setInfos(List<InfoEntity> infos) {
+		this.infos = infos;
+	}
+
+	public List<TicketEntity> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<TicketEntity> tickets) {
+		this.tickets = tickets;
+	}
+
+	public RoleEntity getRoleID() {
+		return roleID;
+	}
+
+	public void setRoleID(RoleEntity roleID) {
+		this.roleID = roleID;
 	}
 
 

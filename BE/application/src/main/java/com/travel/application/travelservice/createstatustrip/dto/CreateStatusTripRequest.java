@@ -1,7 +1,7 @@
 package com.travel.application.travelservice.createstatustrip.dto;
 
 public class CreateStatusTripRequest {
-	private int statusID;
+	private Long statusID;
 
 	private String name;
 
@@ -9,17 +9,16 @@ public class CreateStatusTripRequest {
 
 	}
 
-	public CreateStatusTripRequest(int statusID, String name) {
-
+	public CreateStatusTripRequest(Long statusID, String name) {
 		this.statusID = statusID;
 		this.name = name;
 	}
 
-	public int getStatusID() {
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
 
@@ -30,5 +29,6 @@ public class CreateStatusTripRequest {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 }

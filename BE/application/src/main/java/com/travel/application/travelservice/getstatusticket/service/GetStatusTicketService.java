@@ -1,11 +1,10 @@
 package com.travel.application.travelservice.getstatusticket.service;
 
 import com.travel.application.common.base.BaseResponse;
-import com.travel.application.travelservice.getstatustrip.dto.GetStatusTripRequest;
+import com.travel.application.travelservice.getstatusticket.dto.GetStatusTicketRequest;
 
 public interface GetStatusTicketService {
 
 	BaseResponse getAll();
-
-	BaseResponse getByID(GetStatusTripRequest req);
+	BaseResponse getByID(GetStatusTicketRequest req);
 }

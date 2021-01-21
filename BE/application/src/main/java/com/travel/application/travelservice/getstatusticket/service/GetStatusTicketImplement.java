@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.travel.application.common.base.BaseResponse;
 import com.travel.application.entity.StatusTicketEntity;
+import com.travel.application.travelservice.getstatusticket.dto.GetStatusTicketRequest;
 import com.travel.application.travelservice.getstatusticket.dto.GetStatusTicketResponse;
-import com.travel.application.travelservice.getstatustrip.dto.GetStatusResponse;
-import com.travel.application.travelservice.getstatustrip.dto.GetStatusTripRequest;
+
 
 @Service
 public class GetStatusTicketImplement implements GetStatusTicketService {
@@ -32,7 +32,7 @@ public class GetStatusTicketImplement implements GetStatusTicketService {
 	}
 
 	@Override
-	public BaseResponse getByID(GetStatusTripRequest req) {
+	public BaseResponse getByID(GetStatusTicketRequest req) {
 		// TODO Auto-generated method stub
 		Optional<StatusTicketEntity> list = repo.findById(req.getStatusID());
 		BaseResponse cmRep = new BaseResponse();
@@ -40,7 +40,7 @@ public class GetStatusTicketImplement implements GetStatusTicketService {
 			cmRep.setError("ko ton tai");
 			return cmRep;
 		}
-		GetStatusResponse rep = new GetStatusResponse();
+		GetStatusTicketResponse rep = new GetStatusTicketResponse();
 		rep.setStatusID(list.get().getStatusID());
 		rep.setName(list.get().getName());
 		cmRep.setContent(rep);

@@ -4,7 +4,7 @@ import com.travel.application.entity.StatusTripEntity;
 
 public class GetStatusResponse {
 
-	private int statusID;
+	private Long statusID;
 
 	private String name;
 
@@ -19,26 +19,31 @@ public class GetStatusResponse {
 	}
 
 
-	public GetStatusResponse(int statusID, String name) {
-
+	public GetStatusResponse(Long statusID, String name) {
+		super();
 		this.statusID = statusID;
 		this.name = name;
 	}
 
-	public int getStatusID() {
+
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 }

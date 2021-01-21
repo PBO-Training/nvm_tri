@@ -2,24 +2,24 @@ package com.travel.application.travelservice.getstatusticket.dto;
 
 public class GetStatusTicketRequest {
 
-	private int statusID;
+	private Long statusID;
 
 	private String name;
 
 	public GetStatusTicketRequest() {
 	}
 
-	public GetStatusTicketRequest(int statusID, String name) {
-
+	public GetStatusTicketRequest(Long statusID, String name) {
+		super();
 		this.statusID = statusID;
 		this.name = name;
 	}
 
-	public int getStatusID() {
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
 

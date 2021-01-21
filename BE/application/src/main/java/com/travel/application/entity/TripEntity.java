@@ -17,22 +17,47 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "trip")
 public class TripEntity {
-	public TripEntity() {
-
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "trip_id", nullable = false)
-	private int tripID;
+	private Long tripID;
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	public int getTripID() {
+	@ManyToOne
+	@JoinColumn(name = "route_id", nullable = false)
+	private RouteEntity route;
+	
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+	private List<TicketEntity> tickets;
+	
+	@ManyToOne
+	@JoinColumn(name = "car_id", nullable = false)
+	private CarEntity car;
+	
+	@ManyToOne
+	@JoinColumn(name="status", nullable = false)
+	private StatusTripEntity status;
+
+	public TripEntity() {
+	}
+
+	public TripEntity(Long tripID, Date date, RouteEntity route, List<TicketEntity> tickets, CarEntity car,
+			StatusTripEntity status) {
+		this.tripID = tripID;
+		this.date = date;
+		this.route = route;
+		this.tickets = tickets;
+		this.car = car;
+		this.status = status;
+	}
+
+	public Long getTripID() {
 		return tripID;
 	}
 
-	public void setTripID(int tripID) {
+	public void setTripID(Long tripID) {
 		this.tripID = tripID;
 	}
 
@@ -52,11 +77,6 @@ public class TripEntity {
 		this.route = route;
 	}
 
-	@Override
-	public String toString() {
-		return this.getTripID() + ", " + this.getRoute().getRouteID() + ", " + this.getDate() + ", " + this.getCar();
-	}
-
 	public List<TicketEntity> getTickets() {
 		return tickets;
 	}
@@ -73,21 +93,6 @@ public class TripEntity {
 		this.car = car;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "route_id", nullable = false)
-	private RouteEntity route;
-	
-	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
-	private List<TicketEntity> tickets;
-	
-	@ManyToOne
-	@JoinColumn(name = "car_id", nullable = false)
-	private CarEntity car;
-	
-	@ManyToOne
-	@JoinColumn(name="status", nullable = false)
-	private StatusTripEntity status;
-
 	public StatusTripEntity getStatus() {
 		return status;
 	}
@@ -96,4 +101,5 @@ public class TripEntity {
 		this.status = status;
 	}
 
+	
 }

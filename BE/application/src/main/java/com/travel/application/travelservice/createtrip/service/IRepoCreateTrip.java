@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.travel.application.entity.TripEntity;
 @Repository
-public interface IRepoCreateTrip  extends JpaRepository<TripEntity, Integer>{
+public interface IRepoCreateTrip  extends JpaRepository<TripEntity, Long>{
 
 }

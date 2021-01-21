@@ -1,10 +1,10 @@
-package com.travel.application.travelservice.getroute.dto;
+	package com.travel.application.travelservice.getroute.dto;
 
 import com.travel.application.entity.RouteEntity;
 
 public class GetRouteResponse {
 
-	private int rooteID;
+	private Long rooteID;
 
 	private String departureTime;
 
@@ -12,13 +12,10 @@ public class GetRouteResponse {
 
 	private double price;
 
-	private int provinceStart;
+	private Long provinceStart;
 
-	private int provinceEnd;
+	private Long provinceEnd;
 
-	public int getRooteID() {
-		return rooteID;
-	}
 
 	public GetRouteResponse() {
 		super();
@@ -36,8 +33,8 @@ public class GetRouteResponse {
 		this.provinceEnd = Entity.getProvinceEnd().getProvinceID();
 	}
 
-	public GetRouteResponse(int rooteID, String departureTime, String journeyTime, double price, int provinceStart,
-			int provinceEnd) {
+	public GetRouteResponse(Long rooteID, String departureTime, String journeyTime, double price, Long provinceStart,
+			Long provinceEnd) {
 		super();
 		this.rooteID = rooteID;
 		this.departureTime = departureTime;
@@ -45,10 +42,6 @@ public class GetRouteResponse {
 		this.price = price;
 		this.provinceStart = provinceStart;
 		this.provinceEnd = provinceEnd;
-	}
-
-	public void setRooteID(int rooteID) {
-		this.rooteID = rooteID;
 	}
 
 	public String getDepartureTime() {
@@ -75,20 +68,30 @@ public class GetRouteResponse {
 		this.price = price;
 	}
 
-	public int getProvinceStart() {
+	public Long getProvinceStart() {
 		return provinceStart;
 	}
 
-	public void setProvinceStart(int provinceStart) {
+	public void setProvinceStart(Long provinceStart) {
 		this.provinceStart = provinceStart;
 	}
 
-	public int getProvinceEnd() {
+	public Long getProvinceEnd() {
 		return provinceEnd;
 	}
 
-	public void setProvinceEnd(int provinceEnd) {
+	public void setProvinceEnd(Long provinceEnd) {
 		this.provinceEnd = provinceEnd;
 	}
+
+	public void setRooteID(Long rooteID) {
+		this.rooteID = rooteID;
+	}
+
+
+	public Long getRooteID() {
+		return rooteID;
+	}
+
 
 }

@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -21,14 +20,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class RouteEntity {
 
-	public RouteEntity() {
-
-	}
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "route_id", nullable = false)
-	private int routeID;
+	private Long routeID;
 
 	@Column(name = "price", length = 10, nullable = false)
 	private double price;
@@ -37,63 +34,6 @@ public class RouteEntity {
 	@Column(name = "journey_time")
 	private String journeyTime;
 
-	
-
-	public int getRouteID() {
-		return routeID;
-	}
-
-	public void setRouteID(int routeID) {
-		this.routeID = routeID;
-	}
-
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(long price) {
-		this.price = price;
-	}
-
-	public String getDepartureTime() {
-		return departureTime;
-	}
-
-	public void setDepartureTime(String departureTime) {
-		this.departureTime = departureTime;
-	}
-
-	public String getJourneyTime() {
-		return journeyTime;
-	}
-
-	public void setJourneyTime(String journeyTime) {
-		this.journeyTime = journeyTime;
-	}
-
-	@Override
-	public String toString() {
-		return this.getRouteID() + ", " + this.getProvinceStart() + ", " + this.getProvinceEnd() + ", " + this.getPrice()
-				+ ", " + this.getDepartureTime() + ", " + this.getJourneyTime();
-	}
-	
-	
-	
-
-	
-
-	public List<TripEntity> getTrips() {
-		return trips;
-	}
-
-	public void setTrips(List<TripEntity> trips) {
-		this.trips = trips;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
 	@JsonManagedReference	  
 	@ManyToOne
 	@JoinColumn(name = "province_start")
@@ -109,29 +49,107 @@ public class RouteEntity {
 	@OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
 	private List<TripEntity> trips;
 
-	public List<TripEntity> getTrip() {
-		return trips;
+
+
+	public RouteEntity() {
 	}
 
-	public void setTrip(List<TripEntity> trip) {
+
+
+	public RouteEntity(Long routeID, double price, String departureTime, String journeyTime,
+			ProvinceEntity provinceStart, ProvinceEntity provinceEnd, List<TripEntity> trips) {
+		super();
+		this.routeID = routeID;
+		this.price = price;
+		this.departureTime = departureTime;
+		this.journeyTime = journeyTime;
+		this.provinceStart = provinceStart;
+		this.provinceEnd = provinceEnd;
 		this.trips = trips;
 	}
+
+
+
+	public Long getRouteID() {
+		return routeID;
+	}
+
+
+
+	public void setRouteID(Long routeID) {
+		this.routeID = routeID;
+	}
+
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+
+	public String getDepartureTime() {
+		return departureTime;
+	}
+
+
+
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+
+
+
+	public String getJourneyTime() {
+		return journeyTime;
+	}
+
+
+
+	public void setJourneyTime(String journeyTime) {
+		this.journeyTime = journeyTime;
+	}
+
+
 
 	public ProvinceEntity getProvinceStart() {
 		return provinceStart;
 	}
 
+
+
 	public void setProvinceStart(ProvinceEntity provinceStart) {
 		this.provinceStart = provinceStart;
 	}
+
+
 
 	public ProvinceEntity getProvinceEnd() {
 		return provinceEnd;
 	}
 
+
+
 	public void setProvinceEnd(ProvinceEntity provinceEnd) {
 		this.provinceEnd = provinceEnd;
 	}
-	
 
+
+
+	public List<TripEntity> getTrips() {
+		return trips;
+	}
+
+
+
+	public void setTrips(List<TripEntity> trips) {
+		this.trips = trips;
+	}
+	
 }

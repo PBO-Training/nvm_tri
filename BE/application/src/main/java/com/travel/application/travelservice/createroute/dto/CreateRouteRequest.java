@@ -2,7 +2,7 @@ package com.travel.application.travelservice.createroute.dto;
 
 public class CreateRouteRequest {
 
-	private int rooteID;
+	private Long rooteID;
 
 	private String departureTime;
 
@@ -10,56 +10,85 @@ public class CreateRouteRequest {
 
 	private double price;
 
-	private int provinceStart;
+	private Long provinceStart;
 
-	private int provinceEnd;
+	private Long provinceEnd;
 
-	public int getRooteID() {
+	
+	public CreateRouteRequest() {
+	}
+
+
+	public CreateRouteRequest(Long rooteID, String departureTime, String journeyTime, double price, Long provinceStart,
+			Long provinceEnd) {
+		this.rooteID = rooteID;
+		this.departureTime = departureTime;
+		this.journeyTime = journeyTime;
+		this.price = price;
+		this.provinceStart = provinceStart;
+		this.provinceEnd = provinceEnd;
+	}
+
+
+	public Long getRooteID() {
 		return rooteID;
 	}
 
-	public void setRooteID(int rooteID) {
+
+	public void setRooteID(Long rooteID) {
 		this.rooteID = rooteID;
 	}
+
 
 	public String getDepartureTime() {
 		return departureTime;
 	}
 
+
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
+
 
 	public String getJourneyTime() {
 		return journeyTime;
 	}
 
+
 	public void setJourneyTime(String journeyTime) {
 		this.journeyTime = journeyTime;
 	}
+
 
 	public double getPrice() {
 		return price;
 	}
 
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public int getProvinceStart() {
+
+	public Long getProvinceStart() {
 		return provinceStart;
 	}
 
-	public void setProvinceStart(int provinceStart) {
+
+	public void setProvinceStart(Long provinceStart) {
 		this.provinceStart = provinceStart;
 	}
 
-	public int getProvinceEnd() {
+
+	public Long getProvinceEnd() {
 		return provinceEnd;
 	}
 
-	public void setProvinceEnd(int provinceEnd) {
+
+	public void setProvinceEnd(Long provinceEnd) {
 		this.provinceEnd = provinceEnd;
 	}
+
+
 
 }

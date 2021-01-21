@@ -3,7 +3,7 @@ package com.travel.application.travelservice.getcar.dto;
 import com.travel.application.entity.CarEntity;
 
 public class GetCarResponse {
-	private int carID;
+	private Long carID;
 
 	private String code;
 
@@ -16,9 +16,12 @@ public class GetCarResponse {
 	private int amount;
 
 	public GetCarResponse() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public GetCarResponse(int carID, String code, String name, String licensePlates, double price, int amount) {
+	public GetCarResponse(Long carID, String code, String name, String licensePlates, double price, int amount) {
+		super();
 		this.carID = carID;
 		this.code = code;
 		this.name = name;
@@ -26,8 +29,8 @@ public class GetCarResponse {
 		this.price = price;
 		this.amount = amount;
 	}
-
 	public GetCarResponse(CarEntity entity) {
+		super();
 		this.carID = entity.getCarID();
 		this.code = entity.getCode();
 		this.name = entity.getName();
@@ -36,11 +39,11 @@ public class GetCarResponse {
 		this.amount = entity.getAmount();
 	}
 
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 

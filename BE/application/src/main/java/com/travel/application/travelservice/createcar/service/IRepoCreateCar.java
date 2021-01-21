@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.travel.application.entity.CarEntity;
 @Repository
-public interface IRepoCreateCar extends JpaRepository<CarEntity, Integer>{
+public interface IRepoCreateCar extends JpaRepository<CarEntity, Long>{
 
 }

@@ -15,13 +15,10 @@ import javax.persistence.Table;
 @Table(name = "car")
 public class CarEntity {
 
-	public CarEntity() {
-		
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "car_id", nullable = false)
-	private int carID;
+	private Long carID;
 	
 	@Column(name = "code", length = 10, nullable = false)
 	private String code;
@@ -37,13 +34,31 @@ public class CarEntity {
 	@Column(name = "amount", nullable = false)
 	private int amount;
 
-	
+	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+	private List<TripEntity> trips;
 
-	public int getCarID() {
+
+	public CarEntity() {
+		
+	}
+	
+	
+	public CarEntity(Long carID, String code, String name, String licensePlates, double price, int amount,
+			List<TripEntity> trips) {
+		this.carID = carID;
+		this.code = code;
+		this.name = name;
+		this.licensePlates = licensePlates;
+		this.price = price;
+		this.amount = amount;
+		this.trips = trips;
+	}
+
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 
@@ -63,29 +78,6 @@ public class CarEntity {
 		this.name = name;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-	@Override
-    public String toString() {
-        return this.getCarID() + ", " + this.getCode() + ", " + this.getName()+ ", " + this.getPrice()+ ", " + this.getAmount();
-    }
-	
-	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-	private List<TripEntity> trips;
-
-
-
 	public String getLicensePlates() {
 		return licensePlates;
 	}
@@ -94,9 +86,31 @@ public class CarEntity {
 		this.licensePlates = licensePlates;
 	}
 
-	
+	public double getPrice() {
+		return price;
+	}
 
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public List<TripEntity> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<TripEntity> trips) {
+		this.trips = trips;
+	}
+
+	
+
+
 }

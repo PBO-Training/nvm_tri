@@ -5,21 +5,18 @@ import java.sql.Date;
 public class CreateTripRequest {
 
 	private Date date;
-	private int carID;
-	private int routeID;
-	private int statusID;
+	private Long carID;
+	private Long routeID;
+	private Long statusID;
+	
+	public CreateTripRequest() {
+	}
 
-	public CreateTripRequest(Date date, int carID, int routeID, int statusID) {
-		super();
+	public CreateTripRequest(Date date, Long carID, Long routeID, Long statusID) {
 		this.date = date;
 		this.carID = carID;
 		this.routeID = routeID;
 		this.statusID = statusID;
-	}
-
-	public CreateTripRequest() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Date getDate() {
@@ -30,28 +27,29 @@ public class CreateTripRequest {
 		this.date = date;
 	}
 
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 
-	public int getRouteID() {
+	public Long getRouteID() {
 		return routeID;
 	}
 
-	public void setRouteID(int routeID) {
+	public void setRouteID(Long routeID) {
 		this.routeID = routeID;
 	}
 
-	public int getStatusID() {
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
+
 
 }

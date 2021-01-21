@@ -1,17 +1,27 @@
 package com.travel.application.travelservice.createprovince.dto;
 
 public class CreateProvinceRequest {
-	private int provinceID;
+	private Long provinceID;
 
 	private String code;
 
 	private String name;
 
-	public int getProvinceID() {
+	public CreateProvinceRequest() {
+	}
+
+	public CreateProvinceRequest(Long provinceID, String code, String name) {
+		super();
+		this.provinceID = provinceID;
+		this.code = code;
+		this.name = name;
+	}
+
+	public Long getProvinceID() {
 		return provinceID;
 	}
 
-	public void setProvinceID(int provinceID) {
+	public void setProvinceID(Long provinceID) {
 		this.provinceID = provinceID;
 	}
 
@@ -30,4 +40,5 @@ public class CreateProvinceRequest {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }

@@ -10,38 +10,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="info")
+@Table(name = "info")
 public class InfoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "info_id", nullable = false)
-	private int infoID;
-	
+	private Long infoID;
+
 	@Column(name = "fullname", nullable = false)
 	private String fullName;
-	
-	@Column(name = "phone",length = 10 ,nullable = false)
+
+	@Column(name = "phone", length = 10, nullable = false)
 	private String phone;
-	
-	@Column(name = "identification_number",length = 12)
-	private String 	identificationNumber;
-	
-	@Column(name = "email" ,nullable = false)
+
+	@Column(name = "identification_number", length = 12)
+	private String identificationNumber;
+
+	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "address")
 	private String address;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity userId;
 
-	public int getInfoID() {
+	public InfoEntity() {
+	}
+
+	public InfoEntity(Long infoID, String fullName, String phone, String identificationNumber, String email,
+			String address, UserEntity userId) {
+		super();
+		this.infoID = infoID;
+		this.fullName = fullName;
+		this.phone = phone;
+		this.identificationNumber = identificationNumber;
+		this.email = email;
+		this.address = address;
+		this.userId = userId;
+	}
+
+	public Long getInfoID() {
 		return infoID;
 	}
 
-	public void setInfoID(int infoID) {
+	public void setInfoID(Long infoID) {
 		this.infoID = infoID;
 	}
 
@@ -85,15 +100,13 @@ public class InfoEntity {
 		this.address = address;
 	}
 
-	protected UserEntity getUserId() {
+	public UserEntity getUserId() {
 		return userId;
 	}
 
-	protected void setUserId(UserEntity userId) {
+	public void setUserId(UserEntity userId) {
 		this.userId = userId;
 	}
-
-
 
 	
 }

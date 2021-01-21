@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travel.application.common.base.BaseResponse;
+import com.travel.application.travelservice.getstatusticket.dto.GetStatusTicketRequest;
+import com.travel.application.travelservice.getstatusticket.service.GetStatusTicketService;
 import com.travel.application.travelservice.getstatustrip.dto.GetStatusTripRequest;
-import com.travel.application.travelservice.getstatustrip.service.GetStatusTripService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("statusticket")
 public class GetStatusTicketController {
 	@Autowired
-	public GetStatusTripService repo;
+	public GetStatusTicketService repo;
 
 	@GetMapping("/getall")
 	@ResponseBody
@@ -32,7 +33,7 @@ public class GetStatusTicketController {
 	@GetMapping("/getbyid")
 	
 	@ResponseBody
-	public ResponseEntity<?>getByID(@RequestBody GetStatusTripRequest req)
+	public ResponseEntity<?>getByID(@RequestBody GetStatusTicketRequest req)
 	{
 		BaseResponse rep = repo.getByID(req);
 		return new ResponseEntity<>(rep,HttpStatus.OK);

@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "province")
@@ -21,12 +20,40 @@ public class ProvinceEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "province_id", nullable = false)
-	private int provinceID;
+	private Long provinceID;
 
 	@Column(name = "code", length = 10, nullable = false)
 	private String code;
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@JsonBackReference
+	@OneToMany(mappedBy = "provinceStart", cascade = CascadeType.ALL)
+	private List<RouteEntity> routesStart;
+	@JsonBackReference
+	@OneToMany(mappedBy = "provinceEnd", cascade = CascadeType.ALL)
+	private List<RouteEntity> routesEnd;
+
+	public ProvinceEntity() {
+	}
+
+	public ProvinceEntity(Long provinceID, String code, String name, List<RouteEntity> routesStart,
+			List<RouteEntity> routesEnd) {
+		super();
+		this.provinceID = provinceID;
+		this.code = code;
+		this.name = name;
+		this.routesStart = routesStart;
+		this.routesEnd = routesEnd;
+	}
+
+	public Long getProvinceID() {
+		return provinceID;
+	}
+
+	public void setProvinceID(Long provinceID) {
+		this.provinceID = provinceID;
+	}
 
 	public String getCode() {
 		return code;
@@ -44,26 +71,6 @@ public class ProvinceEntity {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return this.getProvinceID() + ", " + this.getCode() + ", " + this.getName();
-	}
-	@JsonBackReference  
-	@OneToMany(mappedBy = "provinceStart", cascade = CascadeType.ALL)
-	private List<RouteEntity> routesStart;
-	@JsonBackReference
-	@OneToMany(mappedBy = "provinceEnd", cascade = CascadeType.ALL)
-	private List<RouteEntity> routesEnd;
-	
-	
-	public int getProvinceID() {
-		return provinceID;
-	}
-
-	public void setProvinceID(int provinceID) {
-		this.provinceID = provinceID;
-	}
-
 	public List<RouteEntity> getRoutesStart() {
 		return routesStart;
 	}
@@ -79,7 +86,5 @@ public class ProvinceEntity {
 	public void setRoutesEnd(List<RouteEntity> routesEnd) {
 		this.routesEnd = routesEnd;
 	}
-
-
 
 }

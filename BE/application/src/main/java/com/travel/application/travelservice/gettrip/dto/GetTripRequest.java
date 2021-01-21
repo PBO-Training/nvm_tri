@@ -4,62 +4,53 @@ import java.sql.Date;
 
 public class GetTripRequest {
 
-	private int tripID;
+	private Long tripID;
 
-	public int getTripID() {
-		return tripID;
-	}
 
-	public void setTripID(int tripID) {
-		this.tripID = tripID;
-	}
-
+	private Date date;
+	private Long carID;
+	private Long routeID;
+	private Long statusID;
 	public GetTripRequest() {
 	}
-
-	public GetTripRequest(int tripID, Date date, int carID, int routeID, int statusID) {
-		super();
+	public GetTripRequest(Long tripID, Date date, Long carID, Long routeID, Long statusID) {
 		this.tripID = tripID;
 		this.date = date;
 		this.carID = carID;
 		this.routeID = routeID;
 		this.statusID = statusID;
 	}
-
-	private Date date;
-	private int carID;
-	private int routeID;
-	private int statusID;
-
+	public Long getTripID() {
+		return tripID;
+	}
+	public void setTripID(Long tripID) {
+		this.tripID = tripID;
+	}
 	public Date getDate() {
 		return date;
 	}
-
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
-
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
-
-	public int getRouteID() {
+	public Long getRouteID() {
 		return routeID;
 	}
-
-	public void setRouteID(int routeID) {
+	public void setRouteID(Long routeID) {
 		this.routeID = routeID;
 	}
-
-	public int getStatusID() {
+	public Long getStatusID() {
 		return statusID;
 	}
-
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
+	
+	
+
 }

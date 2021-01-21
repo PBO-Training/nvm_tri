@@ -5,20 +5,12 @@ import java.sql.Date;
 import com.travel.application.entity.TripEntity;
 
 public class GetTripResponse {
-	private int tripID;
+	private Long tripID;
 
 	private Date date;
-	private int carID;
-	private int routeID;
-	private int statusID;
-
-	public int getTripID() {
-		return tripID;
-	}
-
-	public void setTripID(int tripID) {
-		this.tripID = tripID;
-	}
+	private Long carID;
+	private Long routeID;
+	private Long statusID;
 
 	public GetTripResponse() {
 	}
@@ -31,12 +23,21 @@ public class GetTripResponse {
 		this.statusID = entity.getStatus().getStatusID();
 	}
 
-	public GetTripResponse(int tripID, Date date, int carID, int routeID, int statusID) {
+	public GetTripResponse(Long tripID, Date date, Long carID, Long routeID, Long statusID) {
+		super();
 		this.tripID = tripID;
 		this.date = date;
 		this.carID = carID;
 		this.routeID = routeID;
 		this.statusID = statusID;
+	}
+
+	public Long getTripID() {
+		return tripID;
+	}
+
+	public void setTripID(Long tripID) {
+		this.tripID = tripID;
 	}
 
 	public Date getDate() {
@@ -47,27 +48,28 @@ public class GetTripResponse {
 		this.date = date;
 	}
 
-	public int getCarID() {
+	public Long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(Long carID) {
 		this.carID = carID;
 	}
 
-	public int getRouteID() {
+	public Long getRouteID() {
 		return routeID;
 	}
 
-	public void setRouteID(int routeID) {
+	public void setRouteID(Long routeID) {
 		this.routeID = routeID;
 	}
 
-	public int getStatusID() {
+	public Long getStatusID() {
 		return statusID;
 	}
 
-	public void setStatusID(int statusID) {
+	public void setStatusID(Long statusID) {
 		this.statusID = statusID;
 	}
+
 }

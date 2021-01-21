@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +13,7 @@ public class RoleEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false)
-	private int roleID;
+	private Long roleID;
 
 	@Column(name = "code", length = 10, nullable = false)
 	private String code;
@@ -26,36 +24,48 @@ public class RoleEntity {
 	@Column(name = "description", length = 600)
 	private String description;
 
-	protected String getDescription() {
-		return description;
+	public RoleEntity() {
 	}
 
-	protected void setDescription(String description) {
+	public RoleEntity(Long roleID, String code, String name, String description) {
+		super();
+		this.roleID = roleID;
+		this.code = code;
+		this.name = name;
 		this.description = description;
 	}
 
-	protected String getCode() {
-		return code;
-	}
-
-	protected void setCode(String code) {
-		this.code = code;
-	}
-
-	protected String getName() {
-		return name;
-	}
-
-	protected void setName(String name) {
-		this.name = name;
-	}
-
-	public int getRoleID() {
+	public Long getRoleID() {
 		return roleID;
 	}
 
-	public void setRoleID(int roleID) {
+	public void setRoleID(Long roleID) {
 		this.roleID = roleID;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 }
