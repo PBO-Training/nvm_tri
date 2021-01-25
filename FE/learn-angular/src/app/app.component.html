@@ -1,0 +1,22 @@
+<H1>App component</H1>
+<a >{{title}}</a>
+
+<app-hello></app-hello>
+<form #nameForm="ngForm">
+	<input
+    type="text" class="form-control"
+    required
+    [(ngModel)]="model.name" name="name"
+    #name="ngModel">
+  <button>Submit</button>
+</form>
+<app-toggle #toggleComp [(checked)]="checked"></app-toggle>
+<button (click)="toggleComp.toggle()">Toggle</button>
+<app-process-bar
+[progress]="formValue.value.progress"[backgroupColor]="'#9e9e9e'"
+[processColor]="'#2e8b57'"></app-process-bar>
+<form [formGroup]= "formValue">
+<input type="text" name="progress" formControlName="progress"/>
+</form>
+<app-author-list></app-author-list>
+<input type="text" [(ngModel)]="title">
