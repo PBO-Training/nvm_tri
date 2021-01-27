@@ -2,7 +2,7 @@ package com.travel.application.travelservice.route.dto;
 
 public class RouteRequest {
 
-	private Long rooteID;
+	private Long routeID;
 
 	private String departureTime;
 
@@ -20,7 +20,7 @@ public class RouteRequest {
 	public RouteRequest(Long rooteID, String departureTime, String journeyTime, double price, Long provinceStart,
 			Long provinceEnd) {
 		super();
-		this.rooteID = rooteID;
+		this.routeID = rooteID;
 		this.departureTime = departureTime;
 		this.journeyTime = journeyTime;
 		this.price = price;
@@ -28,12 +28,12 @@ public class RouteRequest {
 		this.provinceEnd = provinceEnd;
 	}
 
-	public Long getRooteID() {
-		return rooteID;
+	public Long getRouteID() {
+		return routeID;
 	}
 
-	public void setRooteID(Long rooteID) {
-		this.rooteID = rooteID;
+	public void setRouteID(Long rooteID) {
+		this.routeID = rooteID;
 	}
 
 	public String getDepartureTime() {

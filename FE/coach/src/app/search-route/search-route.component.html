@@ -1,12 +1,31 @@
-<p>search-route works!</p>
-<a>ádsd</a>
-<ng-select [(ngModel)]="provinceStartValue" (change)="changeProvinceStart($event)">
-  <ng-option *ngFor="let provinceStart  of provinceStarts" [value]="provinceStart.provinceID">
-    {{ provinceStart.name}}</ng-option>
-  
-</ng-select>
-<!-- <ng-select [(ngModel)]="selectCar">
+<div class="container">
+  <p>search-route works!</p>
+  <a>ádsd</a>
+  <form  [formGroup]="formSearchRoute">
+  <ng-select formControlName="provinceStart" (change)="changeProvinceStart($event)">
+    <ng-option *ngFor="let provinceStart  of provinceStarts" [value]="provinceStart.provinceID">
+      {{ provinceStart.name}}</ng-option>
+
+  </ng-select>
+  <ng-select #NgSelectComponent formControlName="provinceEnd" (change)="changeProvinceEnd()">
+    <ng-option *ngFor="let provinceEnd  of provinceEndsTemps" [value]="provinceEnd.provinceID">
+      {{ provinceEnd.name}}</ng-option>
+  </ng-select>
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="date" ngbDatepicker
+        #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar " (click)="d.toggle()" type="button"><fa-icon [icon]="faCalendar"></fa-icon></button>
+      </div>
+    </div>
+  </div>
+  </form>
+  {{formSearchRoute.value | json}}
+  <button (click)="searRoute()">a </button>
+  <!-- <ng-select [(ngModel)]="selectCar">
   <ng-option *ngFor="let car of cars" [value]="car.id">
     {{ car.name }}</ng-option
   >
 </ng-select> -->
+</div>

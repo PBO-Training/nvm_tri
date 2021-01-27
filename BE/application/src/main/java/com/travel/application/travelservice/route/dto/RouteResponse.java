@@ -4,7 +4,7 @@ import com.travel.application.entity.RouteEntity;
 
 public class RouteResponse {
 
-	private Long rooteID;
+	private Long routeID;
 
 	private String departureTime;
 
@@ -25,7 +25,7 @@ public class RouteResponse {
 	
 	public RouteResponse(RouteEntity Entity) {
 		super();
-		this.rooteID = Entity.getRouteID();
+		this.routeID = Entity.getRouteID();
 		this.departureTime = Entity.getDepartureTime();
 		this.journeyTime = Entity.getJourneyTime();
 		this.price = Entity.getPrice();
@@ -36,7 +36,7 @@ public class RouteResponse {
 	public RouteResponse(Long rooteID, String departureTime, String journeyTime, double price, Long provinceStart,
 			Long provinceEnd) {
 		super();
-		this.rooteID = rooteID;
+		this.routeID = rooteID;
 		this.departureTime = departureTime;
 		this.journeyTime = journeyTime;
 		this.price = price;
@@ -84,13 +84,13 @@ public class RouteResponse {
 		this.provinceEnd = provinceEnd;
 	}
 
-	public void setRooteID(Long rooteID) {
-		this.rooteID = rooteID;
+	public void setRouteID(Long rooteID) {
+		this.routeID = rooteID;
 	}
 
 
-	public Long getRooteID() {
-		return rooteID;
+	public Long getRouteID() {
+		return routeID;
 	}
 
 

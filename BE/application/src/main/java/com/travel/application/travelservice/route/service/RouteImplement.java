@@ -68,7 +68,7 @@ public class RouteImplement implements RouteService {
 		response.setPrice(list.getPrice());
 		response.setProvinceStart(list.getProvinceStart().getProvinceID());
 		response.setProvinceEnd(list.getProvinceEnd().getProvinceID());
-		response.setRooteID(list.getRouteID());
+		response.setRouteID(list.getRouteID());
 		cmRep.setContent(response);
 		return cmRep;
 
@@ -80,13 +80,13 @@ public class RouteImplement implements RouteService {
 
 		BaseResponse cmRes = new BaseResponse();
 		RouteResponse response = new RouteResponse();
-		Optional<RouteEntity> listRoute = repo.findById(req.getRooteID());
+		Optional<RouteEntity> listRoute = repo.findById(req.getRouteID());
 		if (listRoute.isEmpty()) {
 			cmRes.setError("ko ton tai");
 			return cmRes;
 		}
 
-		response.setRooteID(listRoute.get().getRouteID());
+		response.setRouteID(listRoute.get().getRouteID());
 		response.setDepartureTime(listRoute.get().getDepartureTime());
 		response.setJourneyTime(listRoute.get().getJourneyTime());
 		response.setPrice(listRoute.get().getPrice());
