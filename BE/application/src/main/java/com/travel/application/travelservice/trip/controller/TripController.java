@@ -48,4 +48,20 @@ public class TripController {
 		BaseResponse  rep = service.getByID(req);
 		return new ResponseEntity<>(rep,HttpStatus.OK);
 	}
+	
+	@PostMapping("/gettrip")
+	@ResponseBody
+	public ResponseEntity<?> getByIDAndDate(@RequestBody TripRequest req)
+	{
+		
+		return new ResponseEntity<>(service.fullTrip(req),HttpStatus.OK);
+	}
+
+	@PostMapping("/gettriptest")
+	@ResponseBody
+	public ResponseEntity<?> getByIDAndDay(@RequestBody TripRequest req)
+	{
+		
+		return new ResponseEntity<>(service.getByIDAndDate(req),HttpStatus.OK);
+	}
 }

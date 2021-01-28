@@ -6,20 +6,23 @@ public class TripRequest {
 
 	private Long tripID;
 
-
 	private Date date;
 	private Long carID;
 	private Long routeID;
 	private Long statusID;
 	public TripRequest() {
 	}
+	
 	public TripRequest(Long tripID, Date date, Long carID, Long routeID, Long statusID) {
+		super();
 		this.tripID = tripID;
 		this.date = date;
 		this.carID = carID;
 		this.routeID = routeID;
 		this.statusID = statusID;
 	}
+
+	
 	public Long getTripID() {
 		return tripID;
 	}

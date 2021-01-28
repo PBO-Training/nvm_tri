@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Province } from '../entity/province';
 import { Route } from '../entity/route';
 import { ConnectApiService } from '../Services/Web/connect-api.service';
-import {  NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import {   faCalendarAlt}  from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 
@@ -21,13 +22,17 @@ export class SearchRouteComponent implements OnInit {
 
   formSearchRoute: FormGroup;
   model: NgbDateStruct;
+  isDisable: boolean = false;
 
-  constructor(private connectApi: ConnectApiService, private fb: FormBuilder) {
+  constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router) {
     this.formSearchRoute = fb.group(
       {
         provinceStart: this.fb.control(null, [Validators.required]),
         provinceEnd: this.fb.control(null, [Validators.required]),
-        date: this.fb.control(null, [Validators.required])
+        date: this.fb.control(null, [Validators.required]),
+       way:this.fb.control('oneWay', [Validators.required]),
+
+
       }
     );
   }
@@ -40,7 +45,8 @@ export class SearchRouteComponent implements OnInit {
   routeTemp: Route[];
   provinceEndsTemps: Province[] = [];
   routeID = 0;
-
+  tripRequest: Object
+  isDisableRoundWay :boolean = true
 
 
   ngOnInit(): void {
@@ -61,15 +67,12 @@ export class SearchRouteComponent implements OnInit {
     // });
   }
   changeProvinceStart(event) {
-   // this.ngSelectComponent.handleClearClick();
-
+    this.isDisableRoundWay = false;
+    // this.ngSelectComponent.handleClearClick();
     this.routeTemp = this.route.filter((item) => item.provinceStart === event);
     this.provinceEndsTemps = [];
     this.formSearchRoute.value.provinceEnd = null;
     this.ngSelectComponent.clearModel();
-    console.log(this.formSearchRoute.value.provinceEnd);
-    // console.log(this.provinceStarts);
-
 
     this.provinceEnds.filter((item) => this.routeTemp.forEach(itemRT => {
       if (item.provinceID === itemRT.provinceEnd) {
@@ -82,18 +85,19 @@ export class SearchRouteComponent implements OnInit {
     this.routeTemp.filter((item) => {
       if (this.formSearchRoute.value.provinceStart === item.provinceStart && this.formSearchRoute.value.provinceEnd === item.provinceEnd) {
         this.routeID = item.routeID;
+
       }
     });
 
   }
 
   public searRoute() {
-    let tripRequest = {
-      route_id : this.routeID,
+
+    this.tripRequest = {
+      routeID: this.routeID,
       date: this.formSearchRoute.value.date
     };
-    console.log(tripRequest);
-
+    this._route.navigate(['/trip', this.tripRequest])
 
   }
 

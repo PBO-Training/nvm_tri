@@ -15,6 +15,30 @@ public class RouteResponse {
 	private Long provinceStart;
 
 	private Long provinceEnd;
+	
+	private String provinceStartName;
+	
+	private String provinceEndName;
+
+
+	public String getProvinceStartName() {
+		return provinceStartName;
+	}
+
+
+	public void setProvinceStartName(String provinceStartName) {
+		this.provinceStartName = provinceStartName;
+	}
+
+
+	public String getProvinceEndName() {
+		return provinceEndName;
+	}
+
+
+	public void setProvinceEndName(String provinceEndName) {
+		this.provinceEndName = provinceEndName;
+	}
 
 
 	public RouteResponse() {
@@ -31,18 +55,24 @@ public class RouteResponse {
 		this.price = Entity.getPrice();
 		this.provinceStart = Entity.getProvinceStart().getProvinceID();
 		this.provinceEnd = Entity.getProvinceEnd().getProvinceID();
+		this.provinceStartName = Entity.getProvinceStart().getName();
+		this.provinceEndName = Entity.getProvinceEnd().getName();
 	}
 
-	public RouteResponse(Long rooteID, String departureTime, String journeyTime, double price, Long provinceStart,
-			Long provinceEnd) {
+
+	public RouteResponse(Long routeID, String departureTime, String journeyTime, double price, Long provinceStart,
+			Long provinceEnd, String provinceStartName, String provinceEndName) {
 		super();
-		this.routeID = rooteID;
+		this.routeID = routeID;
 		this.departureTime = departureTime;
 		this.journeyTime = journeyTime;
 		this.price = price;
 		this.provinceStart = provinceStart;
 		this.provinceEnd = provinceEnd;
+		this.provinceStartName = provinceStartName;
+		this.provinceEndName = provinceEndName;
 	}
+
 
 	public String getDepartureTime() {
 		return departureTime;

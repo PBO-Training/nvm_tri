@@ -7,6 +7,8 @@ public interface TripService {
 	void save(TripRequest req);
 	BaseResponse getAll();
 	BaseResponse getByID(TripRequest req);
+	BaseResponse getByIDAndDate(TripRequest req);
+	BaseResponse fullTrip(TripRequest req);
 	
 
 }

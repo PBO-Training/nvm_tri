@@ -21,7 +21,6 @@ public IRepoTicket repo;
 @Autowired
 public IRepoTrip repoTrip;
 @Autowired
-
 public IRepoStatusTicket repoStatus;
 @Autowired
 public IRepoUser repoUser;

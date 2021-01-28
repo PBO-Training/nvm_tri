@@ -28,6 +28,8 @@ public class TripImplement implements TripService {
 	public IRepoRoute repoRoute;
 	@Autowired
 	public IRepoStatusTrip repoStatusTrip;
+	@Autowired
+	public TripProcess process;
 	
 	
 	@Override
@@ -75,5 +77,30 @@ public class TripImplement implements TripService {
 		cmRep.setContent(resp);
 		return cmRep;
 	}
+	@Override
+	
+	public BaseResponse fullTrip(TripRequest req) {
+		// TODO Auto-generated method stub
+		BaseResponse cmRep = new BaseResponse();
+		 String queryString = process.createQueryString();
+		 cmRep=process.setDataQuery(queryString, req);
+		
+		
+		return cmRep;
+	}
+	@Override
+	public BaseResponse getByIDAndDate(TripRequest req) {
+		BaseResponse cmRep = new BaseResponse();
+		List<TripEntity> rep = repo.findByRouteAndDate(req.getRouteID(), req.getDate());
+		if(rep.isEmpty())
+		{
+			cmRep.setError("khong ton tai");
+			return cmRep;
+		}
+		List<TripResponse> resp = rep.stream().map(TripResponse::new).collect(Collectors.toList());
+		cmRep.setContent(resp);
+		return cmRep;
+	}
+	
 
 }

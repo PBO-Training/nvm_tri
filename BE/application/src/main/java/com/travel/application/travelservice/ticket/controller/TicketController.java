@@ -16,7 +16,7 @@ import com.travel.application.travelservice.ticket.service.TicketService;
 @RequestMapping("/ticket")
 public class TicketController {
 	@Autowired
-	public TicketService service;
+	public TicketService service ;
 
 	@PostMapping("/save")
 	@ResponseBody

@@ -69,6 +69,8 @@ public class RouteImplement implements RouteService {
 		response.setProvinceStart(list.getProvinceStart().getProvinceID());
 		response.setProvinceEnd(list.getProvinceEnd().getProvinceID());
 		response.setRouteID(list.getRouteID());
+		response.setProvinceStartName(list.getProvinceStart().getName());
+		response.setProvinceEndName(list.getProvinceEnd().getName());
 		cmRep.setContent(response);
 		return cmRep;
 
@@ -92,6 +94,8 @@ public class RouteImplement implements RouteService {
 		response.setPrice(listRoute.get().getPrice());
 		response.setProvinceStart(listRoute.get().getProvinceStart().getProvinceID());
 		response.setProvinceEnd(listRoute.get().getProvinceEnd().getProvinceID());
+		response.setProvinceStartName(listRoute.get().getProvinceStart().getName());
+		response.setProvinceEndName(listRoute.get().getProvinceEnd().getName());
 		cmRes.setContent(response);
 		return cmRes;
 	}

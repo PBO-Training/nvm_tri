@@ -12,9 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CustomAdapter ,CustomDateParserFormatter} from './common/datepicker-adapter';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChooseTripComponent } from './choose-trip/choose-trip.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchRouteComponent],
+  declarations: [AppComponent, SearchRouteComponent, ChooseTripComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
