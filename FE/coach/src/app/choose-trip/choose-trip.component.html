@@ -1,1 +1,31 @@
 <p>choose-trip works!</p>
+<div class="container">
+  <div class="row">
+    <div *ngIf="dataTrip" class="border text-center col-5 py-3">
+      <p>Thời gian khởi hành: <b>{{dataTrip[0].departureTime}}</b> </p>
+      <p>Ngày khởi hành: <b>{{dataTrip[0].date}}</b></p>
+      <p>Tuyến đường:<b>{{dataTrip[0].provinceStartName}} </b>
+        <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTrip[0].provinceEndName}}</b>
+      </p>
+      <p>Chọn xe</p>
+      {{dataCar | json}}
+      <ng-select (change)="changeCar($event)" [(ngModel)]="carValue">
+        <ng-option *ngFor="let trip of dataTrip" [value]="trip.carID">
+          {{trip.carName}}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <!-- <div class="chooseCarDiv mt-5">
+<input type="checkbox"/>
+
+</div> -->
+
+  <button  [class]="classSeat" *ngFor="let seat of seats, let idx index" type="seat" [name]="idx"
+    (click)="chooseSeat(idx)">
+    {{idx}}
+  </button>
+
+  <p>Ghế đã chọn: {{ chooseSeats.join(', ')}}</p>
+  <p>Tổng tiền: {{totalPrice}}</p>
+</div>
