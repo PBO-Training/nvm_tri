@@ -1,0 +1,14 @@
+<p>seat works!</p>
+<div *ngIf="idCar ">
+  <div class="chooseCarDiv" >
+    <div *ngFor='let seat of seats, let idx index' class=" d-inline p-3 check " [class]="'check'+idx">
+
+      <input [id]="'checkseat'+idx" type="checkbox" (change)="chooseSeat($event,idx) "
+        [checked]="chooseSeats.includes(idx)"  class="checkbox1"/>
+      <label [for]="'checkseat'+idx" class="text-right">{{idx}}</label>
+    </div>
+
+  </div>
+  <p>Ghế đã chọn: {{ chooseSeats.join(', ')}}</p>
+  <p>Tổng tiền: {{totalPrice }} VND</p>
+</div>

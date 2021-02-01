@@ -13,9 +13,13 @@ import { CommonModule } from '@angular/common';
 import { CustomAdapter ,CustomDateParserFormatter} from './common/datepicker-adapter';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChooseTripComponent } from './choose-trip/choose-trip.component';
+import { SeatComponent } from './seat/seat.component';
+import { InfoCustomerComponent } from './info-customer/info-customer.component';
+import { InfoTicketComponent } from './info-ticket/info-ticket.component';
+import { PaidSuccessComponent } from './paid-success/paid-success.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchRouteComponent, ChooseTripComponent],
+  declarations: [AppComponent, SearchRouteComponent, ChooseTripComponent, SeatComponent, InfoCustomerComponent, InfoTicketComponent, PaidSuccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
