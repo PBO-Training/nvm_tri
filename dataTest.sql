@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `car`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `car` (
-  `car_id` int NOT NULL AUTO_INCREMENT,
+  `car_id` bigint NOT NULL AUTO_INCREMENT,
   `amount` int NOT NULL,
   `code` varchar(10) NOT NULL,
   `license_plates` varchar(45) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` double NOT NULL,
   PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
-INSERT INTO `car` VALUES (7,9,'LS01','75B-000545','Limousine',50000),(8,12,'LS04','75B-001624','Limousine',50000),(9,9,'LS02','75B-000425','Limousine',50000),(10,9,'LS02','75B-000425','Limousine',50000),(11,12,'LS03','75B-001224','Limousine',50000),(12,12,'LS04','75B-001624','Limousine',50000),(13,32,'GN01','43B-000424','Hyundai 425PS',150000),(14,32,'GN02','38B-000124','Hyundai 425PS',150000),(15,9,'LS02','75B-000425','Limousine',50000);
+INSERT INTO `car` VALUES (1,9,'LS01','75B-000425','Limousine',50000),(2,12,'LS02','75B-001422','Limousine',70000),(3,17,'LS03','75B-002735','Limousine',100000);
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,17 +51,17 @@ DROP TABLE IF EXISTS `info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `info` (
-  `info_id` int NOT NULL AUTO_INCREMENT,
+  `info_id` bigint NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `identification_number` varchar(12) DEFAULT NULL,
   `phone` varchar(10) NOT NULL,
-  `user_id` int DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`info_id`),
   KEY `FKlwgnpuilbh37r12bu32bgfbow` (`user_id`),
   CONSTRAINT `FKlwgnpuilbh37r12bu32bgfbow` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `info` (
 
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
+INSERT INTO `info` VALUES (1,'204 P1','tri72027@gmail.com','Nguyễn Văn Minh Trí','191848429','0702427138',1),(2,'25 Nguyễn Văn Cừ','asdhasd@gmail.,com','Nguyễn Xuaan Tân An','123456789','0123456789',NULL);
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,11 +82,11 @@ DROP TABLE IF EXISTS `province`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `province` (
-  `province_id` int NOT NULL AUTO_INCREMENT,
+  `province_id` bigint NOT NULL AUTO_INCREMENT,
   `code` varchar(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `province` (
 
 LOCK TABLES `province` WRITE;
 /*!40000 ALTER TABLE `province` DISABLE KEYS */;
-INSERT INTO `province` VALUES (64,'BG','Bắc Giang'),(65,'BK','Bắc Kạn'),(66,'CB','Cao Bằng'),(67,'HG','Hà Giang'),(68,'LS','Lạng Sơn'),(69,'PT','Phú Thọ'),(70,'QN','Quảng Ninh'),(71,'TN','Thái Nguyên'),(72,'TQ','Tuyên Quang'),(73,'LC','Lào Cai'),(74,'YB','Yên Bái'),(75,'DB','Điện Biên'),(76,'HB','Hòa Bình'),(77,'LC','Lai Châu'),(78,'SL','Sơn La'),(79,'BN','Bắc Ninh'),(80,'HNA','Hà Nam'),(81,'HD','Hải Dương'),(82,'HY','Hưng Yên'),(83,'ND','Nam Định'),(84,'NB','Ninh Bình'),(85,'TB','Thái Bình'),(86,'VP','Vĩnh Phúc'),(87,'HN','Hà Nội'),(88,'HP','Hải Phòng'),(89,'HT','Hà Tĩnh'),(90,'NA','Nghệ An'),(91,'QB','Quảng Bình'),(92,'QT','Quảng Trị'),(93,'TH','Thanh Hóa'),(94,'TTH','Thừa Thiên–Huế'),(95,'DL','Đắk Lắk'),(96,'DN','Đắk Nông'),(97,'GL','Gia Lai'),(98,'KT','Kon Tum'),(99,'LD','Lâm Đồng'),(100,'BD','Bình Định'),(101,'BT','Bình Thuận'),(102,'KH','Khánh Hòa'),(103,'NT','Ninh Thuận'),(104,'PY','Phú Yên'),(105,'QNA','Quảng Nam'),(106,'QNG','Quảng Ngãi'),(107,'ĐN','Đà Nẵng'),(108,'BRVT','Bà Rịa–Vũng Tàu'),(109,'BD','Bình Dương'),(110,'BP','Bình Phước'),(111,'DNAI','Đồng Nai'),(112,'TN','Tây Ninh'),(113,'HCM','Hồ Chí Minh'),(114,'AG','An Giang'),(115,'BL','Bạc Liêu'),(116,'BTRE','Bến Tre'),(117,'CM','Cà Mau'),(118,'ĐT','Đồng Tháp'),(119,'HG','Hậu Giang'),(120,'KG','Kiên Giang'),(121,'LA','Long An'),(122,'ST','Sóc Trăng'),(123,'TG','Tiền Giang'),(124,'TV','Trà Vinh'),(125,'VL','Vĩnh Long'),(126,'CT','Cần Thơ');
+INSERT INTO `province` VALUES (1,'BG','Bắc Giang'),(2,'BK','Bắc Kạn'),(3,'CB','Cao Bằng'),(4,'HG','Hà Giang'),(5,'LS','Lạng Sơn'),(6,'PT','Phú Thọ'),(7,'QN','Quảng Ninh'),(8,'TN','Thái Nguyên'),(9,'TQ','Tuyên Quang'),(10,'LC','Lào Cai'),(11,'YB','Yên Bái'),(12,'DB','Điện Biên'),(13,'HB','Hòa Bình'),(14,'LC','Lai Châu'),(15,'SL','Sơn La'),(16,'BN','Bắc Ninh'),(17,'HNA','Hà Nam'),(18,'HD','Hải Dương'),(19,'HY','Hưng Yên'),(20,'ND','Nam Định'),(21,'NB','Ninh Bình'),(22,'TB','Thái Bình'),(23,'VP','Vĩnh Phúc'),(24,'HN','Hà Nội'),(25,'HP','Hải Phòng'),(26,'HT','Hà Tĩnh'),(27,'NA','Nghệ An'),(28,'QB','Quảng Bình'),(29,'QT','Quảng Trị'),(30,'TH','Thanh Hóa'),(31,'TTH','Thừa Thiên–Huế'),(32,'DL','Đắk Lắk'),(33,'DN','Đắk Nông'),(34,'GL','Gia Lai'),(35,'KT','Kon Tum'),(36,'LD','Lâm Đồng'),(37,'BD','Bình Định'),(38,'BT','Bình Thuận'),(39,'KH','Khánh Hòa'),(40,'NT','Ninh Thuận'),(41,'PY','Phú Yên'),(42,'QNA','Quảng Nam'),(43,'QNG','Quảng Ngãi'),(44,'ĐN','Đà Nẵng'),(45,'BRVT','Bà Rịa–Vũng Tàu'),(46,'BD','Bình Dương'),(47,'BP','Bình Phước'),(48,'DNAI','Đồng Nai'),(49,'TN','Tây Ninh'),(50,'HCM','Hồ Chí Minh'),(51,'AG','An Giang'),(52,'BL','Bạc Liêu'),(53,'BTRE','Bến Tre'),(54,'CM','Cà Mau'),(55,'ĐT','Đồng Tháp'),(56,'HG','Hậu Giang'),(57,'KG','Kiên Giang'),(58,'LA','Long An'),(59,'ST','Sóc Trăng'),(60,'TG','Tiền Giang'),(61,'TV','Trà Vinh'),(62,'VL','Vĩnh Long'),(63,'CT','Cần Thơ');
 /*!40000 ALTER TABLE `province` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,7 +107,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
-  `role_id` int NOT NULL AUTO_INCREMENT,
+  `role_id` bigint NOT NULL AUTO_INCREMENT,
   `code` varchar(10) NOT NULL,
   `description` varchar(600) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
@@ -132,12 +133,12 @@ DROP TABLE IF EXISTS `route`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `route` (
-  `route_id` int NOT NULL AUTO_INCREMENT,
+  `route_id` bigint NOT NULL AUTO_INCREMENT,
   `departure_time` varchar(255) DEFAULT NULL,
   `journey_time` varchar(255) DEFAULT NULL,
   `price` double NOT NULL,
-  `province_end` int DEFAULT NULL,
-  `province_start` int DEFAULT NULL,
+  `province_end` bigint DEFAULT NULL,
+  `province_start` bigint DEFAULT NULL,
   PRIMARY KEY (`route_id`),
   KEY `FKf35sld3wxdk9m2o6ocfth9y87` (`province_end`),
   KEY `FKppwgd1o09bh957ommhjuai46k` (`province_start`),
@@ -152,7 +153,7 @@ CREATE TABLE `route` (
 
 LOCK TABLES `route` WRITE;
 /*!40000 ALTER TABLE `route` DISABLE KEYS */;
-INSERT INTO `route` VALUES (2,'7h30','12h',150000,122,121),(3,'8h30','12h',150001,90,121);
+INSERT INTO `route` VALUES (1,'7h30','12h',150000,24,31),(2,'7h30','12h',120000,44,31),(3,'7h30','12h',120000,31,24);
 /*!40000 ALTER TABLE `route` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,10 +165,10 @@ DROP TABLE IF EXISTS `status_ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status_ticket` (
-  `status_id` int NOT NULL AUTO_INCREMENT,
+  `status_id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +177,7 @@ CREATE TABLE `status_ticket` (
 
 LOCK TABLES `status_ticket` WRITE;
 /*!40000 ALTER TABLE `status_ticket` DISABLE KEYS */;
-INSERT INTO `status_ticket` VALUES (1,'Use'),(2,'Paid'),(3,'Cancellation-Refund');
+INSERT INTO `status_ticket` VALUES (1,'Đã sử dụng'),(2,'Đã thanh toán');
 /*!40000 ALTER TABLE `status_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +189,7 @@ DROP TABLE IF EXISTS `status_trip`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status_trip` (
-  `status_id` int NOT NULL AUTO_INCREMENT,
+  `status_id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -200,7 +201,7 @@ CREATE TABLE `status_trip` (
 
 LOCK TABLES `status_trip` WRITE;
 /*!40000 ALTER TABLE `status_trip` DISABLE KEYS */;
-INSERT INTO `status_trip` VALUES (1,'Running'),(2,'Waitting');
+INSERT INTO `status_trip` VALUES (1,'Đã chạy'),(2,'Đang chờ');
 /*!40000 ALTER TABLE `status_trip` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,15 +213,15 @@ DROP TABLE IF EXISTS `ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket` (
-  `ticket_id` int NOT NULL AUTO_INCREMENT,
+  `ticket_id` bigint NOT NULL AUTO_INCREMENT,
   `amount_seats` int NOT NULL,
   `date` date NOT NULL,
   `price` double NOT NULL,
-  `seats` varchar(3) NOT NULL,
-  `ticket_code` varchar(10) NOT NULL,
-  `status` int DEFAULT NULL,
-  `trip_id` int NOT NULL,
-  `user_id` int DEFAULT NULL,
+  `seats` varchar(255) NOT NULL,
+  `ticket_code` varchar(20) NOT NULL,
+  `status` bigint DEFAULT NULL,
+  `trip_id` bigint NOT NULL,
+  `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`ticket_id`),
   KEY `FK9xuwjcepe2ptko10brqmk6w7k` (`status`),
   KEY `FKjp9yu1pw75obvo1aaao6os7vk` (`trip_id`),
@@ -228,7 +229,7 @@ CREATE TABLE `ticket` (
   CONSTRAINT `FK9xuwjcepe2ptko10brqmk6w7k` FOREIGN KEY (`status`) REFERENCES `status_ticket` (`status_id`),
   CONSTRAINT `FKdvt57mcco3ogsosi97odw563o` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `FKjp9yu1pw75obvo1aaao6os7vk` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`trip_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +238,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,2,'2021-01-21',300000,'A1','LS01A1',2,3,NULL),(2,2,'2021-01-21',300000,'A1','LS01A1',2,3,1);
+INSERT INTO `ticket` VALUES (1,1,'2021-02-02',200000,'A01','LS01A01',2,4,NULL),(2,2,'2021-02-02',400000,'A03,A04','LS01A01',2,4,NULL),(3,2,'2021-02-02',440000,'A01,A02','LS01A01A02',2,5,NULL),(4,1,'2021-02-02',170000,'A06','LS01A06',2,4,NULL);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,11 +250,11 @@ DROP TABLE IF EXISTS `trip`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trip` (
-  `trip_id` int NOT NULL AUTO_INCREMENT,
+  `trip_id` bigint NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `car_id` int NOT NULL,
-  `route_id` int NOT NULL,
-  `status` int NOT NULL,
+  `car_id` bigint NOT NULL,
+  `route_id` bigint NOT NULL,
+  `status` bigint NOT NULL,
   PRIMARY KEY (`trip_id`),
   KEY `FKmjbnpu0uj7uodbn1f5j0kp9v6` (`car_id`),
   KEY `FKeva4adpyk6glllffnw5ypj20j` (`route_id`),
@@ -261,7 +262,7 @@ CREATE TABLE `trip` (
   CONSTRAINT `FK6fyqaeaonuxfy24r6she8mclh` FOREIGN KEY (`status`) REFERENCES `status_trip` (`status_id`),
   CONSTRAINT `FKeva4adpyk6glllffnw5ypj20j` FOREIGN KEY (`route_id`) REFERENCES `route` (`route_id`),
   CONSTRAINT `FKmjbnpu0uj7uodbn1f5j0kp9v6` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +271,7 @@ CREATE TABLE `trip` (
 
 LOCK TABLES `trip` WRITE;
 /*!40000 ALTER TABLE `trip` DISABLE KEYS */;
-INSERT INTO `trip` VALUES (3,'1970-01-01',7,2,1),(4,'1970-01-01',8,2,1),(5,'1970-01-01',9,2,1),(6,'1970-01-01',11,2,1),(7,'1970-01-01',12,2,1),(8,'1970-01-01',14,2,1),(9,'2021-01-21',12,2,1);
+INSERT INTO `trip` VALUES (1,'2021-02-02',1,1,2),(2,'2021-02-02',2,1,2),(3,'2021-02-02',3,1,2),(4,'2021-02-02',1,2,2),(5,'2021-02-02',2,2,2);
 /*!40000 ALTER TABLE `trip` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,12 +283,12 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL AUTO_INCREMENT,
   `create_time` date NOT NULL,
-  `modify_time` date NOT NULL,
+  `modify_time` date DEFAULT NULL,
   `password` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `role_id` int NOT NULL,
+  `role_id` bigint NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `FKn82ha3ccdebhokx3a8fgdqeyy` (`role_id`),
   CONSTRAINT `FKn82ha3ccdebhokx3a8fgdqeyy` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
@@ -300,7 +301,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'2020-01-21','2020-01-21','123456','Admin',1);
+INSERT INTO `user` VALUES (1,'2021-02-02',NULL,'123456','tri72027',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -313,4 +314,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 16:50:58
+-- Dump completed on 2021-02-02 17:33:16

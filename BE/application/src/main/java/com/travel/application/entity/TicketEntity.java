@@ -20,13 +20,13 @@ public class TicketEntity {
 	@Column(name = "ticket_id", nullable = false)
 	private Long ticketID;
 
-	@Column(name = "ticket_code", length = 10, nullable = false)
+	@Column(name = "ticket_code", length = 20, nullable = false)
 	private String ticketCode;
 
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@Column(name = "seats", length = 3, nullable = false)
+	@Column(name = "seats", nullable = false)
 	private String seats;
 
 	@Column(name = "amount_seats", nullable = false)

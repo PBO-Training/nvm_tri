@@ -1,11 +1,11 @@
 <p>choose-trip works!</p>
 <div *ngIf="dataTrip" class="container">
   <div class="row">
-    <div class="border text-center col-5 py-3">
-      <p>Thời gian khởi hành: <b>{{dataTrip[0].departureTime}}</b> </p>
-      <p>Ngày khởi hành: <b>{{dataTrip[0].date}}</b></p>
-      <p>Tuyến đường:<b>{{dataTrip[0].provinceStartName}} </b>
-        <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTrip[0].provinceEndName}}</b>
+    <div class="f text-center fieldset   col-5 py-3">
+      <p>Thời gian khởi hành: <b>{{dataTrip[0]?.departureTime}}</b> </p>
+      <p>Ngày khởi hành: <b>{{dataTrip[0]?.date}}</b></p>
+      <p>Tuyến đường:<b>{{dataTrip[0]?.provinceStartName}} </b>
+        <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTrip[0]?.provinceEndName}}</b>
       </p>
       <p>Chọn xe</p>
       <ng-select [(ngModel)]="carValue">
@@ -15,9 +15,10 @@
       </ng-select>
     </div>
   </div>
-  <app-seat [dataTrip]="dataTrip" [idCar]="carValue" (dataSeatCar)="submitData($event)"></app-seat>
-  <div class="d-flex  "><button>Quay lại</button>
-    <button class="  align-items-end" (click)="goInfo()" routerLink="/infocustomer">Tiếp tục</button>
+  <app-seat [dataTrip]="dataTrip" [idCar]="carValue" (dataSeatCar)="submitData($event)" [seatChooseDisabled]="seatChooseDisabled"></app-seat>
+  <div class="d-flex justify-content-between ">
+    <button class="btn btn-success" (click)="goBack()"> Quay lại</button>
+    <button class=" btn btn-success " (click)="goInfo()"  routerLink="/infocustomer">Tiếp tục</button>
   </div>
 
 </div>

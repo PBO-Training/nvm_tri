@@ -29,7 +29,8 @@ export class SearchRouteComponent implements OnInit {
       {
         provinceStart: this.fb.control(null, [Validators.required]),
         provinceEnd: this.fb.control(null, [Validators.required]),
-        date: this.fb.control(null, [Validators.required]),
+        dateOneWay: this.fb.control(null, [Validators.required]),
+        dateRoundWay: this.fb.control(null),
        way:this.fb.control('oneWay', [Validators.required]),
 
 
@@ -44,7 +45,7 @@ export class SearchRouteComponent implements OnInit {
   route: Route[];
   routeTemp: Route[];
   provinceEndsTemps: Province[] = [];
-  routeID = 0;
+  routeID:number = 0;
   tripRequest: Object
   isDisableRoundWay :boolean = true
 
@@ -95,7 +96,9 @@ export class SearchRouteComponent implements OnInit {
 
     this.tripRequest = {
       routeID: this.routeID,
-      date: this.formSearchRoute.value.date
+      dateOneWay: this.formSearchRoute.value.dateOneWay,
+      dateRoundWay: this.formSearchRoute.value.dateRoundWay
+
     };
     this._route.navigate(['/trip', this.tripRequest])
 

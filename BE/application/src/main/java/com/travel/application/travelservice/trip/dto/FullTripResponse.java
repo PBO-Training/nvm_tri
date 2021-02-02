@@ -1,6 +1,8 @@
 package com.travel.application.travelservice.trip.dto;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.travel.application.entity.TripEntity;
 

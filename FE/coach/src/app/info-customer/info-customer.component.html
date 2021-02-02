@@ -22,11 +22,13 @@
         </div>
         <div class="form-group col-12">
           <label for="identificationNumber">Số CMND<span style="color: red;">*</span>: </label>
-          <input id="identificationNumber" type="text" formControlName="identificationNumber" class="form-control col-12" name="identificationNumber">
+          <input id="identificationNumber" type="text" formControlName="identificationNumber"
+            class="form-control col-12" name="identificationNumber">
 
         </div>
         <div class="form-group pl-3 ml-3">
-          <input id="accept" type="checkbox" formControlName="accept" name="accept" class=" form-check-input" ><label for="accept">Chấp nhận
+          <input id="accept" type="checkbox" formControlName="accept" name="accept" class=" form-check-input"><label
+            for="accept">Chấp nhận
             điều
             khoảng đặt
             vé</label>
@@ -51,9 +53,13 @@
       <p>
         (<b>*</b>) Quý khách không được đổi/trả vé vào các ngày Lễ Tết (ngày thường quý khách được quyền chuyển đổi hoặc
         hủy vé
-        một lầnduy nhất trước giờ xe chạy 24 giờ), phí hủy vé 10%.
+        một lần duy nhất trước giờ xe chạy 24 giờ), phí hủy vé 10%.
       </p>
     </div>
   </div>
-  <button routerLink>Tiếp tục</button>
+
+  <div class="d-flex mt-3 justify-content-between ">
+    <button class="btn btn-success" (click)="goBack()"> Quay lại</button>
+    <button class=" btn btn-success" (click)="goInfoTicket()" [disabled]="!infoCusomer.valid" routerLink="/infoticket">Tiếp tục</button>
+  </div>
 </div>

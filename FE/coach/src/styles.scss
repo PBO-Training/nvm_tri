@@ -4,3 +4,17 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import '~bootstrap/scss/bootstrap';
 
+.fieldset {
+  position: relative;
+  border: rgb(197, 197, 197) solid 1px;
+  background-color:rgba(236, 253, 239, 0.719);
+  border-radius: 1em;
+
+}
+.titleinfo{
+  background-color:rgba(199, 247, 207, 0.719);
+  font-weight: bold;
+  border-top: 1px rgb(197, 197, 197)  solid ;
+  border-bottom: 1px rgb(197, 197, 197)  solid ;
+}
+

@@ -9,23 +9,23 @@ import { SearchRouteComponent } from './search-route/search-route.component';
 
 const routes: Routes = [
   {
-    path: "trip",
+    path: 'trip',
     component: ChooseTripComponent,
   },
   {
-    path: "",
+    path: '',
     component: SearchRouteComponent,
   },
   {
-    path: "infocustomer",
+    path: 'infocustomer',
     component: InfoCustomerComponent
   },
   {
-    path: "infoticket",
+    path: 'infoticket',
     component: InfoTicketComponent
   },
   {
-    path: "paidsuccess",
+    path: 'paidsuccess',
     component: PaidSuccessComponent
   }
 ];

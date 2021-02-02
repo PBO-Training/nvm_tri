@@ -39,3 +39,11 @@ input[type=checkbox].checkbox1:disabled + label {
   display:inline-block;
   background-size: 50%;
 }
+
+input[type=checkbox].checkboxchoose:disabled + label {
+  background:url("/assets/image/seatchoose.png") no-repeat;
+  height: 70px;
+  width: 85px;
+  display:inline-block;
+  background-size: 50%;
+}
