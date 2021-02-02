@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ConnectApiService {
-  private REST_API_SERVER = 'http://192.168.4.12:8080'
+  private REST_API_SERVER = 'http://localhost:8080'
 
   constructor(private http: HttpClient) { }
 

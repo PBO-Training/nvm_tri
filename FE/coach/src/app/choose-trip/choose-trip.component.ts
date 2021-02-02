@@ -15,12 +15,15 @@ import { DataShareService } from '../Services/DataShare/data-share.service';
 })
 export class ChooseTripComponent implements OnInit {
   faChevronRight = faArrowRight;
-  dataTrip: Trip[];
+  dataTripOneWay: Trip[];
+  dataTripRoundWay: Trip[];
   requestOneWay: any;
   requestRoundWay: any;
-  carValue: number;
+  carValueOneWay: number;
+  carValueRoundWay: number;
   seatChooseDisabled: string[] = [];
   dataTicket: any;
+  null: null
   // tslint:disable-next-line: max-line-length
   constructor(private Route: ActivatedRoute, private connectApi: ConnectApiService, private ElementAngular: ElementRef, private DataShare: DataShareService, private _route: Router) {
     console.log(this.requestRoundWay)
@@ -31,47 +34,56 @@ export class ChooseTripComponent implements OnInit {
     const dateOneWay = [datesplit[0], month, day].join('-');
     this.Route.paramMap.subscribe(params => {
       this.requestOneWay = {
-        routeID: params.get('routeID'),
+        routeID: params.get('routeOneWayId'),
         date: dateOneWay
       };
-      // if ((params.get('dateRoundWay') !== null)) {
-      //   const datesplit = this.Route.snapshot.paramMap.get('dateRoundWay').split('-');
+      console.log(this.Route.snapshot.paramMap.get('dateRoundWay'))
+      if (this.Route.snapshot.paramMap.get('dateRoundWay') != this.null) {
+        console.log(this.Route.snapshot.paramMap.get('dateRoundWay'))
+        const datesplit = this.Route.snapshot.paramMap.get('dateRoundWay').split('-');
 
-      //   const month = parseInt(datesplit[1], 10) > 9 ? datesplit[1] : '0' + datesplit[1];
-      //   const day = parseInt(datesplit[2], 10) > 9 ? datesplit[2] : '0' + datesplit[2];
-      //   const dateRoundWay = [datesplit[0], month, day].join('-');
-      //   this.requestRoundWay =
-      //   {
-      //     routeID: params.get('routeID'),
-      //     date: dateRoundWay
-      //   }
-      // }
+        const month = parseInt(datesplit[1], 10) > 9 ? datesplit[1] : '0' + datesplit[1];
+        const day = parseInt(datesplit[2], 10) > 9 ? datesplit[2] : '0' + datesplit[2];
+        const dateRoundWay = [datesplit[0], month, day].join('-');
+        this.requestRoundWay =
+        {
+          routeID: params.get('routeRoundWayID'),
+          date: dateRoundWay
+        }
+      }
 
 
     });
   }
   ngOnInit(): void {
     console.log(this.requestRoundWay)
-    this.dataTrip = [];
     this.connectApi.post('trip/gettrip', this.requestOneWay).subscribe((response) => {
-      this.dataTrip = response['content'];
-      console.log(this.dataTrip);
-      this.carValue = this.dataTrip[0].carID;
+      this.dataTripOneWay = response['content'];
+      console.log("🚀 ~ file: choose-trip.component.ts ~ line 57 ~ ChooseTripComponent ~ this.connectApi.post ~ this.dataTripOneWay", this.dataTripOneWay)
+
+      this.carValueOneWay = this.dataTripOneWay[0].carID;
     });
-    // if ((this.requestRoundWay !== null)) {
-    //   this.connectApi.post('trip/gettrip', this.requestRoundWay).subscribe((response) => {
-    //     this.dataTrip.push(response['content']);
-    //     console.log(this.dataTrip);
-    //     this.carValue = this.dataTrip[0].carID;
-    //   });
-    // }
+    if ((this.requestRoundWay !== this.null)) {
+      this.connectApi.post('trip/gettrip', this.requestRoundWay).subscribe((response) => {
+        this.dataTripRoundWay = response['content'];
+        console.log("🚀 ~ file: choose-trip.component.ts ~ line 68 ~ ChooseTripComponent ~ this.connectApi.post ~ response", response)
+        console.log("🚀 ~ file: choose-trip.component.ts ~ line 68 ~ ChooseTripComponent ~ this.connectApi.post ~ this.dataTripRoundWay", this.dataTripRoundWay)
+        console.log(this.dataTripRoundWay);
+        this.carValueRoundWay = this.dataTripRoundWay[0].carID;
+      });
+    }
 
   }
   public changeCar(idCar) {
     console.log(this.ElementAngular);
     console.log('idCar', idCar);
   }
-  submitData(data) {
+  submitDataOneWay(data) {
+    console.log(data);
+    this.dataTicket = data;
+    this.DataShare.setDataTrip(data);
+  }
+  submitDataRoundWay(data) {
     console.log(data);
     this.dataTicket = data;
     this.DataShare.setDataTrip(data);

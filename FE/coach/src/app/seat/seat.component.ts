@@ -13,14 +13,18 @@ import { ConnectApiService } from '../Services/Web/connect-api.service';
 export class SeatComponent implements OnInit, OnChanges {
 
   @Input() dataTrip: Trip[];
-  @Input() idCar: number;
+  @Input() carValueOneWay: number;
+  @Input() carValueRoundWay: number;
   @Output() dataSeatCar = new EventEmitter();
+
   seats: string[] = [];
   dataTripTemp: Trip;
   chooseSeats: string[] = [];
   seatsDisable: string[] = [];
   totalPrice: number = 0;
   dataSeat: Object;
+  OneWay: boolean
+
   @Input() seatChooseDisabled: string[] = [];
   constructor(private connectApi: ConnectApiService) {
 
@@ -33,16 +37,25 @@ export class SeatComponent implements OnInit, OnChanges {
     if ('seatChooseDisabled' in changes) {
       console.log("xuân tân")
       this.seatChooseDisabled = changes['seatChooseDisabled'].currentValue;
-      console.log( this.seatChooseDisabled)
+      console.log(this.seatChooseDisabled)
     }
-    if ('idCar' in changes) {
+    if ('carValueOneWay' in changes) {
+      this.OneWay = false
       this.chooseSeats = [];
       this.totalPrice = 0;
-      this.idCar = changes['idCar'].currentValue;
-      this.changeSeat(this.idCar);
+      this.carValueOneWay = changes['carValueOneWay'].currentValue;
+      this.changeSeat(this.carValueOneWay);
+    }
+    if ('carValueRoundWay' in changes) {
+      this.OneWay = true
+      this.chooseSeats = [];
+      this.totalPrice = 0;
+      this.carValueOneWay = changes['carValueRoundWay'].currentValue;
+      this.changeSeat(this.carValueRoundWay);
     }
   }
   public chooseSeat(even, idx) {
+
     console.log(even.target.checked)
     if (even.target.checked === true) {
       this.chooseSeats.push(idx)
@@ -67,7 +80,7 @@ export class SeatComponent implements OnInit, OnChanges {
     this.dataSeatCar.emit(this.dataSeat);
   }
   ngOnInit(): void {
-    console.log(this.idCar)
+
 
   }
   public changeSeat(idCar) {

@@ -23,7 +23,7 @@ export class SearchRouteComponent implements OnInit {
   formSearchRoute: FormGroup;
   model: NgbDateStruct;
   isDisable: boolean = false;
-
+  null :null
   constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router) {
     this.formSearchRoute = fb.group(
       {
@@ -45,7 +45,8 @@ export class SearchRouteComponent implements OnInit {
   route: Route[];
   routeTemp: Route[];
   provinceEndsTemps: Province[] = [];
-  routeID:number = 0;
+  routeOneWayID:number = 0;
+  routeRoundWayID:number = 0;
   tripRequest: Object
   isDisableRoundWay :boolean = true
 
@@ -85,21 +86,32 @@ export class SearchRouteComponent implements OnInit {
   changeProvinceEnd() {
     this.routeTemp.filter((item) => {
       if (this.formSearchRoute.value.provinceStart === item.provinceStart && this.formSearchRoute.value.provinceEnd === item.provinceEnd) {
-        this.routeID = item.routeID;
+        this.routeOneWayID = item.routeID;
 
       }
+
     });
 
   }
 
   public searRoute() {
 
-    this.tripRequest = {
-      routeID: this.routeID,
-      dateOneWay: this.formSearchRoute.value.dateOneWay,
-      dateRoundWay: this.formSearchRoute.value.dateRoundWay
+    if(this.formSearchRoute.value.dateRoundWay==this.null)
+    {
+      this.tripRequest = {
+        routeOneWayID: this.routeOneWayID,
+        dateOneWay: this.formSearchRoute.value.dateOneWay,
+      };
+    }
+    else{
+      this.tripRequest = {
+        routeOneWayId: this.routeOneWayID,
+        dateOneWay: this.formSearchRoute.value.dateOneWay,
+        routeRoundWayID: this.routeRoundWayID,
+        dateRoundWay: this.formSearchRoute.value.dateRoundWay
+      };
+    }
 
-    };
     this._route.navigate(['/trip', this.tripRequest])
 
   }

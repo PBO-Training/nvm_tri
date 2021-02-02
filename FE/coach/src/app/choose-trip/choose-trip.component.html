@@ -1,24 +1,52 @@
 <p>choose-trip works!</p>
-<div *ngIf="dataTrip" class="container">
-  <div class="row">
-    <div class="f text-center fieldset   col-5 py-3">
-      <p>Thời gian khởi hành: <b>{{dataTrip[0]?.departureTime}}</b> </p>
-      <p>Ngày khởi hành: <b>{{dataTrip[0]?.date}}</b></p>
-      <p>Tuyến đường:<b>{{dataTrip[0]?.provinceStartName}} </b>
-        <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTrip[0]?.provinceEndName}}</b>
-      </p>
-      <p>Chọn xe</p>
-      <ng-select [(ngModel)]="carValue">
-        <ng-option *ngFor="let trip of dataTrip" [value]="trip.carID">
-          {{trip.carName}} | {{trip.licensePlates}}
-        </ng-option>
-      </ng-select>
+<div class="container">
+  <div *ngIf="dataTripOneWay?.length>0; else nodata">
+    <div class="row">
+      <div class="f text-center fieldset   col-5 py-3">
+        <p>Thời gian khởi hành: <b>{{dataTripOneWay[0]?.departureTime}}</b> </p>
+        <p>Ngày khởi hành: <b>{{dataTripOneWay[0]?.date}}</b></p>
+        <p>Tuyến đường:<b>{{dataTripOneWay[0]?.provinceStartName}} </b>
+          <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTripOneWay[0]?.provinceEndName}}</b>
+        </p>
+        <p>Chọn xe</p>
+        <ng-select [(ngModel)]="carValueOneWay">
+          <ng-option *ngFor="let trip of dataTripOneWay" [value]="trip.carID">
+            {{trip.carName}} | {{trip.licensePlates}}
+          </ng-option>
+        </ng-select>
+      </div>
     </div>
+    <app-seat [dataTrip]="dataTripOneWay" [carValueOneWay]="carValueOneWay" (dataSeatCar)="submitDataOneWay($event)"
+      [seatChooseDisabled]="seatChooseDisabled"></app-seat>
+
   </div>
-  <app-seat [dataTrip]="dataTrip" [idCar]="carValue" (dataSeatCar)="submitData($event)" [seatChooseDisabled]="seatChooseDisabled"></app-seat>
+  <ng-template  #nodata>
+    <div class="f text-center fieldset   col-5 py-3">
+      <h4>Không có dữ liệu</h4>
+    </div>
+  </ng-template>
+  <div *ngIf="dataTripRoundWay?.length>0" class="container">
+    <div class="row">
+      <div class="f text-center fieldset   col-5 py-3">
+        <p>Thời gian khởi hành: <b>{{dataTripRoundWay[0]?.departureTime}}</b> </p>
+        <p>Ngày khởi hành: <b>{{dataTripRoundWay[0]?.date}}</b></p>
+        <p>Tuyến đường:<b>{{dataTripRoundWay[0]?.provinceStartName}} </b>
+          <fa-icon [icon]="faChevronRight"></fa-icon> <b> {{dataTripRoundWay[0]?.provinceEndName}}</b>
+        </p>
+        <p>Chọn xe</p>
+        <ng-select [(ngModel)]="carValueRoundWay">
+          <ng-option *ngFor="let trip of dataTripRoundWay" [value]="trip.carID">
+            {{trip.carName}} | {{trip.licensePlates}}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <app-seat [dataTrip]="dataTripRoundWay" [carValueRoundWay]="carValueRoundWay" (dataSeatCar)="submitDataRoundWay($event)"
+      [seatChooseDisabled]="seatChooseDisabled"></app-seat>
+
+  </div>
   <div class="d-flex justify-content-between ">
     <button class="btn btn-success" (click)="goBack()"> Quay lại</button>
-    <button class=" btn btn-success " (click)="goInfo()"  routerLink="/infocustomer">Tiếp tục</button>
+    <button class=" btn btn-success " (click)="goInfo()" routerLink="/infocustomer">Tiếp tục</button>
   </div>
-
 </div>
