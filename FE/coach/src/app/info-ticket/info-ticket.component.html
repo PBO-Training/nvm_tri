@@ -1,6 +1,6 @@
 <p>info-ticket works!</p>
-<div class="container"*ngIf="dataTicket && dataCustomer">
-  <div class="fieldset" >
+<div class="container" *ngIf="dataTicketOneWay && dataCustomer">
+  <div class="fieldset">
     <h3 class="text-center m-3"> THÔNG TIN MUA VÉ</h3>
     <p class="p-2 titleinfo">Thông tin khách hàng</p>
     <div class="row">
@@ -44,29 +44,42 @@
     <div class="row">
       <div class="col-5">
         <div class="row ml-3">
-          <p class="col-5 d-inline">Tuyến xe:</p>
-
-
-          <p class="col-6 d-inline">{{dataTicket['provinceStart']}} <fa-icon [icon]="faArrowRight"></fa-icon>
-            {{dataTicket['provinceEnd']}}</p>
+          <p class="col-5 d-inline">Tuyến xe đi:</p>
+          <p class="col-6 d-inline">{{dataTicketOneWay['provinceStart']}} <fa-icon [icon]="faArrowRight"></fa-icon>
+            {{dataTicketOneWay['provinceEnd']}}</p>
         </div>
       </div>
       <div class="col-5 offset-2">
         <div class="row ml-3">
           <p class="col-5 d-inline">Số lượng ghế:</p>
 
+          <p class="col-6 d-inline"> {{dataTicketOneWay['amout']}} </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="dataTicketRoundWay['codeTicket']" class="row">
+      <div class="col-5">
+        <div class="row ml-3">
+          <p class="col-5 d-inline">Tuyến xe về:</p>
+          <p class="col-6 d-inline">{{dataTicketRoundWay['provinceStart']}} <fa-icon [icon]="faArrowRight"></fa-icon>
+            {{dataTicketRoundWay['provinceEnd']}}</p>
+        </div>
+      </div>
+      <div class="col-5 offset-2">
+        <div class="row ml-3">
+          <p class="col-5 d-inline">Số lượng ghế:</p>
 
-          <p class="col-6 d-inline"> {{dataTicket['amout']}} </p>
+          <p class="col-6 d-inline"> {{dataTicketRoundWay['amout']}} </p>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-5">
         <div class="row ml-3">
-          <p class="col-5 d-inline">Thời gian-ngày:</p>
+          <p class="col-5 d-inline">Thời gian đi:</p>
 
 
-          <p class="col-6 d-inline"> {{dataTicket['departureTime']}}({{dataTicket['dateTrip']}}) </p>
+          <p class="col-6 d-inline"> {{dataTicketOneWay['departureTime']}}({{dataTicketOneWay['dateTrip']}}) </p>
         </div>
       </div>
       <div class="col-5 offset-2">
@@ -74,22 +87,42 @@
           <p class="col-5 d-inline">Số ghế:</p>
 
 
-          <p class="col-6 d-inline">{{dataTicket['seats']}} </p>
+          <p class="col-6 d-inline">{{dataTicketOneWay['seats']}} </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="dataTicketRoundWay['codeTicket']" class="row">
+      <div class="col-5">
+        <div class="row ml-3">
+          <p class="col-5 d-inline">Thời gian về:</p>
+
+
+          <p class="col-6 d-inline"> {{dataTicketRoundWay['departureTime']}}({{dataTicketRoundWay['dateTrip']}}) </p>
+        </div>
+      </div>
+      <div class="col-5 offset-2">
+        <div class="row ml-3">
+          <p class="col-5 d-inline">Số ghế:</p>
+
+
+          <p class="col-6 d-inline">{{dataTicketRoundWay['seats']}} </p>
         </div>
       </div>
     </div>
     <div class="row">
       <div class=" col-3 offset-9 text-center">
         <h5>TỔNG TIỀN:</h5>
-
-        <p><b>{{dataTicket['price']}} VND</b></p>
+        <p *ngIf="dataTicketRoundWay['codeTicket']; else oneWay"><b>{{totalPrice}}
+            VND</b></p>
+        <ng-template #oneWay>
+          <p><b>{{dataTicketOneWay['price']}} VND</b></p>
+        </ng-template>
       </div>
     </div>
 
   </div>
   <div class="d-flex mt-3 justify-content-between ">
     <button class="btn btn-success" (click)="goBack()"> Quay lại</button>
-    <button class=" btn btn-success" (click)="goPaid()"
-      routerLink="/paidsuccess">Thanh Toán</button>
+    <button class=" btn btn-success" (click)="goPaid()" routerLink="/paidsuccess">Thanh Toán</button>
   </div>
 </div>

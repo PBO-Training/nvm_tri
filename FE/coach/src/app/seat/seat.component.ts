@@ -35,9 +35,7 @@ export class SeatComponent implements OnInit, OnChanges {
       this.dataTrip = changes['dataTrip'].currentValue;
     }
     if ('seatChooseDisabled' in changes) {
-      console.log("xuân tân")
       this.seatChooseDisabled = changes['seatChooseDisabled'].currentValue;
-      console.log(this.seatChooseDisabled)
     }
     if ('carValueOneWay' in changes) {
       this.OneWay = false
@@ -55,8 +53,7 @@ export class SeatComponent implements OnInit, OnChanges {
     }
   }
   public chooseSeat(even, idx) {
-
-    console.log(even.target.checked)
+    // console.log(even.target.checked)
     if (even.target.checked === true) {
       this.chooseSeats.push(idx)
     } else {
@@ -85,7 +82,6 @@ export class SeatComponent implements OnInit, OnChanges {
   }
   public changeSeat(idCar) {
     this.seats = [];
-
     this.dataTrip.filter(data => {
       if (data.carID === idCar) {
         for (let i = 1; i <= data.carAmount; i++) {
@@ -96,7 +92,6 @@ export class SeatComponent implements OnInit, OnChanges {
             const seat = 'A' + i;
             this.seats.push(seat);
           }
-
         }
         this.dataTripTemp = { ...data };
 
@@ -104,33 +99,37 @@ export class SeatComponent implements OnInit, OnChanges {
           'tripID': this.dataTripTemp.tripID
         };
         this.connectApi.post('ticket/getbytripid', request).subscribe((response) => {
-          console.log('this.connectApi.post ~ response', response)
-          console.log(this.dataTripTemp)
+          // console.log('this.connectApi.post ~ response', response)
+          // console.log(this.dataTripTemp)
           let dataTicket: Ticket[];
           dataTicket = response['content'];
+          // console.log('this.connectApi.post ~ dataTicket', dataTicket)
+
           this.seatsDisable = []
-          dataTicket.filter(dataT => {
-            if (dataT['tripID'] === this.dataTripTemp.tripID) {
-              if (this.dataTripTemp.carID == idCar) {
+          if (dataTicket !== null) {
+            dataTicket.filter(dataT => {
+              if (dataT['tripID'] === this.dataTripTemp.tripID) {
+                if (this.dataTripTemp.carID == idCar) {
 
-                console.log(dataT['seat'].length)
-                if (dataT['seat'].length === 3) {
-                  this.seatsDisable.push(dataT['seat']);
-                  console.log(this.chooseSeats)
+                  // console.log(dataT['seat'].length)
+                  if (dataT['seat'].length === 3) {
+                    this.seatsDisable.push(dataT['seat']);
+                    // console.log(this.chooseSeats)
+                  }
+                  else {
+                    const seatSplit = dataT['seat'].split(',')
+
+                    seatSplit.forEach((data) => {
+
+                      this.seatsDisable.push(data);
+                      // console.log(this.chooseSeats)
+                    })
+                  }
+
                 }
-                else {
-                  const seatSplit = dataT['seat'].split(',')
-
-                  seatSplit.forEach((data) => {
-
-                    this.seatsDisable.push(data);
-                    console.log(this.chooseSeats)
-                  })
-                }
-
               }
-            }
-          })
+            })
+          }
         }
 
         )

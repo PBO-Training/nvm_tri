@@ -12,7 +12,7 @@ import com.travel.application.entity.CarEntity;
 import com.travel.application.entity.RouteEntity;
 import com.travel.application.entity.StatusTripEntity;
 import com.travel.application.entity.TripEntity;
-import com.travel.application.travelservice.car.services.IRepoCar;
+import com.travel.application.travelservice.car.service.IRepoCar;
 import com.travel.application.travelservice.route.service.IRepoRoute;
 import com.travel.application.travelservice.statustrip.service.IRepoStatusTrip;
 import com.travel.application.travelservice.trip.dto.TripRequest;

@@ -4,9 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-   // 'Authorization': 'my-auth-token'
+    // 'Authorization': 'my-auth-token'
   })
 }
 @Injectable({
@@ -34,16 +34,16 @@ export class ConnectApiService {
   };
   public get(url) {
     const urlall = `${this.REST_API_SERVER}/` + url
-     return this.http.get(urlall,httpOptions)
-       .pipe(
-         catchError(this.handleError)
-       );
-   }
-   public post(url,data) {
+    return this.http.get(urlall, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  public post(url, data) {
     const urlall = `${this.REST_API_SERVER}/` + url
-     return this.http.post(urlall,data,httpOptions)
-       .pipe(
-         catchError(this.handleError)
-       );
-   }
+    return this.http.post(urlall, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }

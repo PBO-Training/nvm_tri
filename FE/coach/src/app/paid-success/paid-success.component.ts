@@ -9,17 +9,17 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 })
 export class PaidSuccessComponent implements OnInit {
   faArrowRight = faArrowRight;
-  dataTicket: any;
+  dataTicketOneWay: any;
+  dataTicketRoundWay: any;
   dataCustomer: any;
   constructor(private DataShare: DataShareService) {
-    this.dataTicket = DataShare.getDataTrip();
-    this.dataCustomer = DataShare.getdataUser();
   }
 
   ngOnInit(): void {
     this.DataShare.currentDataCustomerBS.subscribe(data => this.dataCustomer = data);
-    this.DataShare.currentDataTicketBS.subscribe(data => this.dataTicket = data);
-    console.log('constructor ~ this.dataTicket', this.dataTicket)
+    this.DataShare.currentDataTicketOneWayBS.subscribe(data => this.dataTicketOneWay = data);
+    this.DataShare.currentDataTicketRoundWayBS.subscribe(data => this.dataTicketRoundWay = data);
+    console.log('constructor ~ this.dataTicket', this.dataTicketOneWay)
     console.log('constructor ~ this.dataCustomer', this.dataCustomer)
   }
   goBack() {

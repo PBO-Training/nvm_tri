@@ -5,30 +5,22 @@ import { BehaviorSubject } from 'rxjs'
   providedIn: 'root'
 })
 export class DataShareService {
-  private dataTicketBS = new BehaviorSubject({});
+  private dataTicketOneWayBS = new BehaviorSubject({});
+  private dataTicketRoundWayBS = new BehaviorSubject({});
   private dataCustomerBS = new BehaviorSubject({});
-  currentDataTicketBS = this.dataTicketBS.asObservable();
+  currentDataTicketOneWayBS = this.dataTicketOneWayBS.asObservable();
+  currentDataTicketRoundWayBS = this.dataTicketRoundWayBS.asObservable();
   currentDataCustomerBS = this.dataCustomerBS.asObservable();
-  private dataTrip;
-  private dataUser;
-  changeDataTicketBS(data: any) {
-    this.dataTicketBS.next(data);
+  changeDataTicketOneWayBS(data: any) {
+    this.dataTicketOneWayBS.next(data);
+  }
+  changeDataTicketRoundWayBS(data: any) {
+    this.dataTicketRoundWayBS.next(data);
   }
 
   changeDataCustomerBS(data: any) {
     this.dataCustomerBS.next(data);
   }
-  getDataTrip() {
-    return this.dataTrip;
-  }
-  setDataTrip(data) {
-    this.dataTrip = data;
-  }
-  getdataUser() {
-    return this.dataUser;
-  }
-  setdataUser(data) {
-    this.dataUser = data;
-  }
+
   constructor() { }
 }

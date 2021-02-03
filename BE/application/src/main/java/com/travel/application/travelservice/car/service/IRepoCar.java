@@ -1,4 +1,4 @@
-package com.travel.application.travelservice.car.services;
+package com.travel.application.travelservice.car.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

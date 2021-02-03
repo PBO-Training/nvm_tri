@@ -22,26 +22,22 @@ export class ChooseTripComponent implements OnInit {
   carValueOneWay: number;
   carValueRoundWay: number;
   seatChooseDisabled: string[] = [];
-  dataTicket: any;
-  null: null
+  dataTicketOneWay: any;
+  dataTicketRoundWay: any;
+
   // tslint:disable-next-line: max-line-length
   constructor(private Route: ActivatedRoute, private connectApi: ConnectApiService, private ElementAngular: ElementRef, private DataShare: DataShareService, private _route: Router) {
-    console.log(this.requestRoundWay)
     const datesplit = this.Route.snapshot.paramMap.get('dateOneWay').split('-');
-
     const month = parseInt(datesplit[1], 10) > 9 ? datesplit[1] : '0' + datesplit[1];
     const day = parseInt(datesplit[2], 10) > 9 ? datesplit[2] : '0' + datesplit[2];
     const dateOneWay = [datesplit[0], month, day].join('-');
     this.Route.paramMap.subscribe(params => {
       this.requestOneWay = {
-        routeID: params.get('routeOneWayId'),
+        routeID: params.get('routeOneWayID'),
         date: dateOneWay
       };
-      console.log(this.Route.snapshot.paramMap.get('dateRoundWay'))
-      if (this.Route.snapshot.paramMap.get('dateRoundWay') != this.null) {
-        console.log(this.Route.snapshot.paramMap.get('dateRoundWay'))
+      if (this.Route.snapshot.paramMap.get('dateRoundWay') !== null) {
         const datesplit = this.Route.snapshot.paramMap.get('dateRoundWay').split('-');
-
         const month = parseInt(datesplit[1], 10) > 9 ? datesplit[1] : '0' + datesplit[1];
         const day = parseInt(datesplit[2], 10) > 9 ? datesplit[2] : '0' + datesplit[2];
         const dateRoundWay = [datesplit[0], month, day].join('-');
@@ -51,24 +47,17 @@ export class ChooseTripComponent implements OnInit {
           date: dateRoundWay
         }
       }
-
-
     });
   }
   ngOnInit(): void {
-    console.log(this.requestRoundWay)
+    console.log('this.requestRoundWay')
     this.connectApi.post('trip/gettrip', this.requestOneWay).subscribe((response) => {
       this.dataTripOneWay = response['content'];
-      console.log("🚀 ~ file: choose-trip.component.ts ~ line 57 ~ ChooseTripComponent ~ this.connectApi.post ~ this.dataTripOneWay", this.dataTripOneWay)
-
       this.carValueOneWay = this.dataTripOneWay[0].carID;
     });
-    if ((this.requestRoundWay !== this.null)) {
+    if ((this.requestRoundWay !== null)) {
       this.connectApi.post('trip/gettrip', this.requestRoundWay).subscribe((response) => {
         this.dataTripRoundWay = response['content'];
-        console.log("🚀 ~ file: choose-trip.component.ts ~ line 68 ~ ChooseTripComponent ~ this.connectApi.post ~ response", response)
-        console.log("🚀 ~ file: choose-trip.component.ts ~ line 68 ~ ChooseTripComponent ~ this.connectApi.post ~ this.dataTripRoundWay", this.dataTripRoundWay)
-        console.log(this.dataTripRoundWay);
         this.carValueRoundWay = this.dataTripRoundWay[0].carID;
       });
     }
@@ -80,20 +69,18 @@ export class ChooseTripComponent implements OnInit {
   }
   submitDataOneWay(data) {
     console.log(data);
-    this.dataTicket = data;
-    this.DataShare.setDataTrip(data);
+    this.dataTicketOneWay = data;
+    this.DataShare.changeDataTicketOneWayBS(data);
   }
   submitDataRoundWay(data) {
     console.log(data);
-    this.dataTicket = data;
-    this.DataShare.setDataTrip(data);
+    this.dataTicketRoundWay = data;
+    this.DataShare.changeDataTicketRoundWayBS(data);
   }
   goInfo() {
 
-    this.seatChooseDisabled = this.DataShare.getDataTrip()['seats']
+    this.seatChooseDisabled = this.DataShare.changeDataTicketOneWayBS['seats']
     console.log(this.seatChooseDisabled)
-    this.DataShare.changeDataTicketBS(this.dataTicket);
-    console.log(this.dataTicket);
   }
   goBack() {
     window.history.back();

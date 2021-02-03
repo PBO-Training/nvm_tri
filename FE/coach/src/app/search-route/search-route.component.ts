@@ -23,7 +23,7 @@ export class SearchRouteComponent implements OnInit {
   formSearchRoute: FormGroup;
   model: NgbDateStruct;
   isDisable: boolean = false;
-  null :null
+  null: null;
   constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router) {
     this.formSearchRoute = fb.group(
       {
@@ -31,7 +31,7 @@ export class SearchRouteComponent implements OnInit {
         provinceEnd: this.fb.control(null, [Validators.required]),
         dateOneWay: this.fb.control(null, [Validators.required]),
         dateRoundWay: this.fb.control(null),
-       way:this.fb.control('oneWay', [Validators.required]),
+        way: this.fb.control('oneWay', [Validators.required]),
 
 
       }
@@ -43,12 +43,13 @@ export class SearchRouteComponent implements OnInit {
   public provinceStarts: Province[];
   provinceEnds: Province[];
   route: Route[];
-  routeTemp: Route[];
+  routeOneWayTemp: Route[];
+  routeRoundWayTemp: Route[];
   provinceEndsTemps: Province[] = [];
-  routeOneWayID:number = 0;
-  routeRoundWayID:number = 0;
+  routeOneWayID: number ;
+  routeRoundWayID: number ;
   tripRequest: Object
-  isDisableRoundWay :boolean = true
+  isDisableRoundWay: boolean = true;
 
 
   ngOnInit(): void {
@@ -56,13 +57,12 @@ export class SearchRouteComponent implements OnInit {
     this.connectApi.get('/province/getall').subscribe((response) => {
 
       this.provinceStarts = response['content'];
-      console.log(this.provinceStarts);
+
 
       this.provinceEnds = response['content'];
     });
     this.connectApi.get('/route/getall').subscribe((response) => {
       this.route = response['content'];
-      console.log(this.route);
     });
     // this.formSearchRoute.controls.provinceEnd.valueChanges.subscribe(val => {
     //   this.formSearchRoute.patchValue({ provinceEnd: null });
@@ -71,12 +71,14 @@ export class SearchRouteComponent implements OnInit {
   changeProvinceStart(event) {
     this.isDisableRoundWay = false;
     // this.ngSelectComponent.handleClearClick();
-    this.routeTemp = this.route.filter((item) => item.provinceStart === event);
+    this.routeOneWayTemp = this.route.filter((item) => item.provinceStart === event);
+    this.routeRoundWayTemp = this.route.filter((item) => item.provinceEnd === event);
+
     this.provinceEndsTemps = [];
     this.formSearchRoute.value.provinceEnd = null;
     this.ngSelectComponent.clearModel();
 
-    this.provinceEnds.filter((item) => this.routeTemp.forEach(itemRT => {
+    this.provinceEnds.filter((item) => this.routeOneWayTemp.forEach(itemRT => {
       if (item.provinceID === itemRT.provinceEnd) {
         this.provinceEndsTemps.push(item);
       }
@@ -84,36 +86,40 @@ export class SearchRouteComponent implements OnInit {
   }
 
   changeProvinceEnd() {
-    this.routeTemp.filter((item) => {
+    this.routeOneWayTemp.filter((item) => {
       if (this.formSearchRoute.value.provinceStart === item.provinceStart && this.formSearchRoute.value.provinceEnd === item.provinceEnd) {
         this.routeOneWayID = item.routeID;
 
       }
+    });
+    if (this.formSearchRoute.value.way === 'roundWay') {
+    this.routeRoundWayTemp.filter((item) => {
+      if (this.formSearchRoute.value.provinceEnd === item.provinceStart && this.formSearchRoute.value.provinceStart === item.provinceEnd) {
+        this.routeRoundWayID = item.routeID;
+      }
 
     });
-
+  }
   }
 
   public searRoute() {
 
-    if(this.formSearchRoute.value.dateRoundWay==this.null)
-    {
+    if (this.formSearchRoute.value.way === 'oneWay') {
       this.tripRequest = {
         routeOneWayID: this.routeOneWayID,
         dateOneWay: this.formSearchRoute.value.dateOneWay,
       };
     }
-    else{
+    else {
       this.tripRequest = {
-        routeOneWayId: this.routeOneWayID,
+        routeOneWayID: this.routeOneWayID,
         dateOneWay: this.formSearchRoute.value.dateOneWay,
         routeRoundWayID: this.routeRoundWayID,
         dateRoundWay: this.formSearchRoute.value.dateRoundWay
       };
     }
 
-    this._route.navigate(['/trip', this.tripRequest])
+    this._route.navigate(['/trip', this.tripRequest]);
 
   }
-
 }

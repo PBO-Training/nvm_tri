@@ -1,4 +1,4 @@
-package com.travel.application.travelservice.car.services;
+package com.travel.application.travelservice.car.service;
 
 import com.travel.application.common.base.BaseResponse;
 import com.travel.application.travelservice.car.dto.CarRequest;

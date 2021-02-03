@@ -9,45 +9,59 @@ import { ConnectApiService } from '../Services/Web/connect-api.service';
 })
 export class InfoTicketComponent implements OnInit {
   faArrowRight = faArrowRight;
-  dataTicket: any;
+  dataTicketOneWay: any;
+  dataTicketRoundWay: any;
   dataCustomer: any;
+  totalPrice: number;
   constructor(private DataShare: DataShareService, private connectApi: ConnectApiService) {
-    this.dataTicket = DataShare.getDataTrip();
-    this.dataCustomer = DataShare.getdataUser();
+    console.log(this.dataTicketRoundWay)
+    this.DataShare.currentDataCustomerBS.subscribe(data => this.dataCustomer = data);
+    this.DataShare.currentDataTicketOneWayBS.subscribe(data => this.dataTicketOneWay = data);
+    this.DataShare.currentDataTicketRoundWayBS.subscribe(data => this.dataTicketRoundWay = data);
+    console.log(this.dataTicketRoundWay)
+
+
   }
 
   ngOnInit(): void {
-    this.DataShare.currentDataCustomerBS.subscribe(data => this.dataCustomer = data);
-    this.DataShare.currentDataTicketBS.subscribe(data => this.dataTicket = data);
-    console.log('constructor ~ this.dataTicket', this.dataTicket)
-    console.log('constructor ~ this.dataCustomer', this.dataCustomer)
+    this.totalPrice = this.dataTicketOneWay['price'] + this.dataTicketRoundWay['price'];
   }
   goBack() {
     window.history.back();
   }
   goPaid() {
-    let requestTicket =
+    console.log(this.dataCustomer)
+    const requestTicketOneWay =
     {
-      ticketCode: this.dataTicket['codeTicket'],
-      amountSeats: this.dataTicket['amout'],
+      ticketCode: this.dataTicketOneWay['codeTicket'],
+      amountSeats: this.dataTicketOneWay['amout'],
       date: new Date(),
-      seat: this.dataTicket['seats'].join(','),
-      price: this.dataTicket['price'],
-      tripID: this.dataTicket['tripID'],
+      seat: this.dataTicketOneWay['seats'].join(','),
+      price: this.dataTicketOneWay['price'],
+      tripID: this.dataTicketOneWay['tripID'],
       statusID: 2
+    }; this.connectApi.post('ticket/save', requestTicketOneWay).subscribe(data => {
+      console.log(data);
+    });
+
+    if (this.dataTicketRoundWay['codeTicket']) {
+      const requestTicketRoundWay =
+      {
+        ticketCode: this.dataTicketRoundWay['codeTicket'],
+        amountSeats: this.dataTicketRoundWay['amout'],
+        date: new Date(),
+        seat: this.dataTicketRoundWay['seats'].join(','),
+        price: this.dataTicketRoundWay['price'],
+        tripID: this.dataTicketRoundWay['tripID'],
+        statusID: 2
+      };
+      this.connectApi.post('ticket/save', requestTicketRoundWay).subscribe(data => {
+        console.log(data);
+      });
     }
-    // this.connectApi.post("info/save",this.dataCustomer).subscribe(data =>
-    //   {
+    this.connectApi.post("info/save",this.dataCustomer).subscribe(data =>
+      {
 
-    //   })
-    console.log(requestTicket)
-    this.connectApi.post("ticket/save", requestTicket).subscribe(data => {
-      console.log(data)
-    })
-
+      })
   }
 }
-
-
-
-
