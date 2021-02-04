@@ -8,12 +8,12 @@ public class TicketResponse {
 
 	private Long ticketID;
 	private String ticketCode;
-	private int amountSeats;
 	private Date date;
 	private String seat;
-	private double price;
+	private int amountSeats;
 	private Long tripID;
 	private Long userID;
+	private double price;
 	private Long statusID;
 
 	public TicketResponse() {

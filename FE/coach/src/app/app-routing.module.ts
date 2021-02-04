@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChooseTripComponent } from './choose-trip/choose-trip.component';
+import { HistoryTicketComponent } from './history-ticket/history-ticket.component';
 import { InfoCustomerComponent } from './info-customer/info-customer.component';
 import { InfoTicketComponent } from './info-ticket/info-ticket.component';
 import { PaidSuccessComponent } from './paid-success/paid-success.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
   {
     path: 'paidsuccess',
     component: PaidSuccessComponent
+  }, {
+    path: 'historyticket',
+    component: HistoryTicketComponent
   }
 ];
 

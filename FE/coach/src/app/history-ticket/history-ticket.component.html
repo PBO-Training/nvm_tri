@@ -1,0 +1,84 @@
+<p>history-ticket works!</p>
+<div class="container">
+  <div class=" fieldset  p-3">
+    <h5>Lịch sử mua vé</h5>
+    <form [formGroup]="searchTicket">
+      <div class="row">
+        <div class="col-3 text-center">
+          <label for="ticketCode">Mã vé</label>
+          <input type="text" id="ticketCode" formControlName="ticketCode" class="form-control" name="ticketCode">
+        </div>
+        <div class="col-3 text-center">
+          <label for="dateBuyTicket">Ngày mua vé</label>
+          <div class="input-group ">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" formControlName="dateBuyTicket"
+              ngbDatepicker #d1="ngbDatepicker" id="dateBuyTicket" name="dateBuyTicket">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar " (click)="d1.toggle()" type="button">
+                <fa-icon [icon]="faCalendar"></fa-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 text-center">
+          <label for="dateGo">Ngày đi</label>
+          <div class="input-group ">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="dateGo" ngbDatepicker #d2="ngbDatepicker" id="dateGo" name="dateGo">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar " (click)="d2.toggle()" type="button">
+                <fa-icon [icon]="faCalendar"></fa-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 text-center">
+          <label for="provinceStart">Điểm đi</label>
+          <ng-select id="provinceStart" name="provinceStart" formControlName="provinceStart">
+            <ng-option>
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 text-center">
+          <label for="provinceEnd">Điểm đến</label>
+          <ng-select id="provinceEnd" name="provinceEnd" formControlName="provinceEnd">
+            <ng-option>
+            </ng-option>
+          </ng-select>
+        </div>
+        <div class="col-3 text-center">
+          <label for="status">Trạng thái</label>
+          <ng-select id="status" name="status" formControlName="status">
+            <ng-option>
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3 d-flex justify-content-between">
+          <button class="btn btn-success ">Tìm kiếm</button>
+          <button type="reset" class="btn btn-success">Xóa form</button>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class=" fieldset  p-3 mt-3">
+<table class="table table-striped">
+<thead>
+  <tr class="titleinfo border">
+    <th *ngFor="let header of titleHeader, let idx index">{{header}}</th>
+  </tr>
+</thead>
+<tbody>
+<tr *ngFor="let data of dataTable, let idx index ">
+  <td *ngFor="let datarow of data[idx]">a</td>
+
+</tr>
+</tbody>
+</table>
+  </div>
+</div>

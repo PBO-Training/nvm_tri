@@ -10,3 +10,18 @@ export interface Ticket {
   'userID': number;
   'statusID': number;
 }
+export interface FullTicket {
+
+  'ticketID': number;
+  'dateBuyTicket': string;
+  'dateGo': string;
+  'ticketCode': string;
+  'amountSeats': number;
+  'seat': string;
+  'provinceStartName': string;
+  'provinceEndName': string;
+  'licensePlates': string;
+  'price': number;
+  'userID': number;
+  'status': string
+}

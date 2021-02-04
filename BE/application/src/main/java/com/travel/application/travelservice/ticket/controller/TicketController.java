@@ -52,5 +52,12 @@ public class TicketController {
 		BaseResponse  rep = service.getByTripID(req);
 		return new ResponseEntity<>(rep,HttpStatus.OK);
 	}
+	@PostMapping("/getticket")
+	@ResponseBody
+	public ResponseEntity<?> getHistory(@RequestBody TicketRequest req)
+	{
+		BaseResponse  rep = service.getHistoryTicket(req);
+		return new ResponseEntity<>(rep,HttpStatus.OK);
+	}
 
 }

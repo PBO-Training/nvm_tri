@@ -6,7 +6,9 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    // 'Authorization': 'my-auth-token'
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
+    // 'Authorization': 'my-auth-token',
+    'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type,Origin, Authorization, Accept,Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type'
   })
 }
 @Injectable({

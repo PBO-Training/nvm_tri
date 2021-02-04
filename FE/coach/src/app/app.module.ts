@@ -17,9 +17,10 @@ import { SeatComponent } from './seat/seat.component';
 import { InfoCustomerComponent } from './info-customer/info-customer.component';
 import { InfoTicketComponent } from './info-ticket/info-ticket.component';
 import { PaidSuccessComponent } from './paid-success/paid-success.component';
+import { HistoryTicketComponent } from './history-ticket/history-ticket.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchRouteComponent, ChooseTripComponent, SeatComponent, InfoCustomerComponent, InfoTicketComponent, PaidSuccessComponent],
+  declarations: [AppComponent, SearchRouteComponent, ChooseTripComponent, SeatComponent, InfoCustomerComponent, InfoTicketComponent, PaidSuccessComponent, HistoryTicketComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

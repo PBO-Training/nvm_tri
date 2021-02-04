@@ -9,4 +9,5 @@ public interface TicketService {
 	BaseResponse getAll();
 	BaseResponse getByID(TicketRequest req);
 	BaseResponse getByTripID(TicketRequest req);
+	BaseResponse getHistoryTicket(TicketRequest req);
 }

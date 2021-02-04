@@ -38,14 +38,14 @@ export class SeatComponent implements OnInit, OnChanges {
       this.seatChooseDisabled = changes['seatChooseDisabled'].currentValue;
     }
     if ('carValueOneWay' in changes) {
-      this.OneWay = false
+      this.OneWay = false;
       this.chooseSeats = [];
       this.totalPrice = 0;
       this.carValueOneWay = changes['carValueOneWay'].currentValue;
       this.changeSeat(this.carValueOneWay);
     }
     if ('carValueRoundWay' in changes) {
-      this.OneWay = true
+      this.OneWay = true;
       this.chooseSeats = [];
       this.totalPrice = 0;
       this.carValueOneWay = changes['carValueRoundWay'].currentValue;
@@ -99,17 +99,15 @@ export class SeatComponent implements OnInit, OnChanges {
           'tripID': this.dataTripTemp.tripID
         };
         this.connectApi.post('ticket/getbytripid', request).subscribe((response) => {
-          // console.log('this.connectApi.post ~ response', response)
           // console.log(this.dataTripTemp)
           let dataTicket: Ticket[];
           dataTicket = response['content'];
-          // console.log('this.connectApi.post ~ dataTicket', dataTicket)
 
           this.seatsDisable = []
           if (dataTicket !== null) {
             dataTicket.filter(dataT => {
               if (dataT['tripID'] === this.dataTripTemp.tripID) {
-                if (this.dataTripTemp.carID == idCar) {
+                if (this.dataTripTemp.carID === idCar) {
 
                   // console.log(dataT['seat'].length)
                   if (dataT['seat'].length === 3) {
@@ -123,16 +121,16 @@ export class SeatComponent implements OnInit, OnChanges {
 
                       this.seatsDisable.push(data);
                       // console.log(this.chooseSeats)
-                    })
+                    });
                   }
 
                 }
               }
-            })
+            });
           }
         }
 
-        )
+        );
       }
     });
 

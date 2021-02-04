@@ -2,43 +2,42 @@ package com.travel.application.travelservice.ticket.dto;
 
 import java.sql.Date;
 
-public class TicketRequest {
+public class HistoryTicketResponse {
 
 	private Long ticketID;
-	private String ticketCode;
-	private int amountSeats;
 	private Date dateBuyTicket;
 	private Date dateGo;
+	private String ticketCode;
+	private int amountSeats;
 	private String seat;
-	private double price;
-	private Long tripID;
-	private Long userID;
-	private Long statusID;
-	private Long provinceStart;
-	private Long provinceEnd;
+	private String provinceStartName;
+	private String provinceEndName;
 	private String licensePlates;
+	private double price;
+	private Long userID;
+	private String status;
 
-	public TicketRequest() {
+
+	public HistoryTicketResponse() {
 	}
 
 	
-	public TicketRequest(Long ticketID, String ticketCode, int amountSeats, Date dateBuyTicket, Date dateGo,
-			String seat, double price, Long tripID, Long userID, Long statusID, Long provinceStart, Long provinceEnd,
-			String licensePlates) {
+	public HistoryTicketResponse(Long ticketID, Date dateByTicket, Date dateGo, String ticketCode, int amountSeats,
+			String seat, String provinceStartName, String provinceEndName, String licensePlates, double price,
+			Long userID, String status) {
 		super();
 		this.ticketID = ticketID;
+		this.dateBuyTicket = dateByTicket;
+		this.dateGo = dateGo;
 		this.ticketCode = ticketCode;
 		this.amountSeats = amountSeats;
-		this.dateBuyTicket = dateBuyTicket;
-		this.dateGo = dateGo;
 		this.seat = seat;
-		this.price = price;
-		this.tripID = tripID;
-		this.userID = userID;
-		this.statusID = statusID;
-		this.provinceStart = provinceStart;
-		this.provinceEnd = provinceEnd;
+		this.provinceStartName = provinceStartName;
+		this.provinceEndName = provinceEndName;
 		this.licensePlates = licensePlates;
+		this.price = price;
+		this.userID = userID;
+		this.status = status;
 	}
 
 
@@ -66,12 +65,13 @@ public class TicketRequest {
 		this.amountSeats = amountSeats;
 	}
 
+
 	public Date getDateBuyTicket() {
 		return dateBuyTicket;
 	}
 
-	public void setDateBuyTicket(Date dateBuyTicket) {
-		this.dateBuyTicket = dateBuyTicket;
+	public void setDateBuyTicket(Date dateByTicket) {
+		this.dateBuyTicket = dateByTicket;
 	}
 
 	public Date getDateGo() {
@@ -98,13 +98,6 @@ public class TicketRequest {
 		this.price = price;
 	}
 
-	public Long getTripID() {
-		return tripID;
-	}
-
-	public void setTripID(Long tripID) {
-		this.tripID = tripID;
-	}
 
 	public Long getUserID() {
 		return userID;
@@ -114,28 +107,28 @@ public class TicketRequest {
 		this.userID = userID;
 	}
 
-	public Long getStatusID() {
-		return statusID;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStatusID(Long statusID) {
-		this.statusID = statusID;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public Long getProvinceStart() {
-		return provinceStart;
+	public String getProvinceStartName() {
+		return provinceStartName;
 	}
 
-	public void setProvinceStart(Long provinceStart) {
-		this.provinceStart = provinceStart;
+	public void setProvinceStartName(String provinceStartName) {
+		this.provinceStartName = provinceStartName;
 	}
 
-	public Long getProvinceEnd() {
-		return provinceEnd;
+	public String getProvinceEndName() {
+		return provinceEndName;
 	}
 
-	public void setProvinceEnd(Long provinceEnd) {
-		this.provinceEnd = provinceEnd;
+	public void setProvinceEndName(String provinceEndName) {
+		this.provinceEndName = provinceEndName;
 	}
 
 	public String getLicensePlates() {
