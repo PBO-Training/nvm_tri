@@ -1,0 +1,22 @@
+<div class=" fieldset  p-3 mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr class="titleinfo border">
+        <th *ngFor="let header of objectKeys(columHeader), let idx index">{{columHeader[header]}}</th>
+        <th *ngIf="isAction">Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataTable, let idx index ">
+        <!-- <td>{{data['ticketCode']}}</td> -->
+        <td *ngFor="let datarow of objectKeys(columHeader) "> {{data[datarow]}}</td>
+        <td *ngIf="isAction">
+          <button *ngIf="action['info']==true"> <fa-icon [icon]="faInfo"></fa-icon> </button>
+          <button *ngIf="action['update']==true"> <fa-icon [icon]="faPenAlt"></fa-icon> </button>
+          <button *ngIf="action['delete']==true"> <fa-icon [icon]="faTrashAlt"></fa-icon> </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

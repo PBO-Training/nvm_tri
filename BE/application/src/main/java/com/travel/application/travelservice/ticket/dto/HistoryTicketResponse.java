@@ -10,8 +10,9 @@ public class HistoryTicketResponse {
 	private String ticketCode;
 	private int amountSeats;
 	private String seat;
-	private String provinceStartName;
-	private String provinceEndName;
+//	private String provinceStartName;
+//	private String provinceEndName;
+	private String route;
 	private String licensePlates;
 	private double price;
 	private Long userID;
@@ -23,7 +24,10 @@ public class HistoryTicketResponse {
 
 	
 	public HistoryTicketResponse(Long ticketID, Date dateByTicket, Date dateGo, String ticketCode, int amountSeats,
-			String seat, String provinceStartName, String provinceEndName, String licensePlates, double price,
+			String seat,
+//			String provinceStartName, String provinceEndName,
+			String route,
+			String licensePlates, double price,
 			Long userID, String status) {
 		super();
 		this.ticketID = ticketID;
@@ -32,8 +36,9 @@ public class HistoryTicketResponse {
 		this.ticketCode = ticketCode;
 		this.amountSeats = amountSeats;
 		this.seat = seat;
-		this.provinceStartName = provinceStartName;
-		this.provinceEndName = provinceEndName;
+//		this.provinceStartName = provinceStartName;
+//		this.provinceEndName = provinceEndName;
+		this.route = route;
 		this.licensePlates = licensePlates;
 		this.price = price;
 		this.userID = userID;
@@ -115,25 +120,36 @@ public class HistoryTicketResponse {
 		this.status = status;
 	}
 
-	public String getProvinceStartName() {
-		return provinceStartName;
-	}
-
-	public void setProvinceStartName(String provinceStartName) {
-		this.provinceStartName = provinceStartName;
-	}
-
-	public String getProvinceEndName() {
-		return provinceEndName;
-	}
-
-	public void setProvinceEndName(String provinceEndName) {
-		this.provinceEndName = provinceEndName;
-	}
+//	public String getProvinceStartName() {
+//		return provinceStartName;
+//	}
+//
+//	public void setProvinceStartName(String provinceStartName) {
+//		this.provinceStartName = provinceStartName;
+//	}
+//
+//	public String getProvinceEndName() {
+//		return provinceEndName;
+//	}
+//
+//	public void setProvinceEndName(String provinceEndName) {
+//		this.provinceEndName = provinceEndName;
+//	}
+	
 
 	public String getLicensePlates() {
 		return licensePlates;
 	}
+
+	public String getRoute() {
+		return route;
+	}
+
+
+	public void setRoute(String route) {
+		this.route = route;
+	}
+
 
 	public void setLicensePlates(String licensePlates) {
 		this.licensePlates = licensePlates;

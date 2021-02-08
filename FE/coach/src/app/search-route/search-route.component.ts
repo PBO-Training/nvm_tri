@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Province } from '../entity/province';
 import { Route } from '../entity/route';
 import { ConnectApiService } from '../Services/Web/connect-api.service';
@@ -7,6 +7,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { DataShareService } from '../Services/DataShare/data-share.service';
 
 
 
@@ -19,18 +21,20 @@ import { Router } from '@angular/router';
 export class SearchRouteComponent implements OnInit {
   faCalendar = faCalendarAlt;
   @ViewChild('NgSelectComponent') ngSelectComponent: NgSelectComponent;
+  @Output() activeNav = new EventEmitter();
+  public activeNavigation: any;
 
   formSearchRoute: FormGroup;
   model: NgbDateStruct;
   isDisable: boolean = false;
   null: null;
-  constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router) {
+  constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router, private dataShare: DataShareService) {
     this.formSearchRoute = fb.group(
       {
         provinceStart: this.fb.control(null, [Validators.required]),
         provinceEnd: this.fb.control(null, [Validators.required]),
         dateOneWay: this.fb.control(null, [Validators.required]),
-        dateRoundWay: this.fb.control(null),
+        dateRoundWay: this.fb.control({ value: null, disabled: true }),
         way: this.fb.control('oneWay', [Validators.required]),
 
 
@@ -46,8 +50,8 @@ export class SearchRouteComponent implements OnInit {
   routeOneWayTemp: Route[];
   routeRoundWayTemp: Route[];
   provinceEndsTemps: Province[] = [];
-  routeOneWayID: number ;
-  routeRoundWayID: number ;
+  routeOneWayID: number;
+  routeRoundWayID: number;
   tripRequest: Object
   isDisableRoundWay: boolean = true;
 
@@ -93,17 +97,19 @@ export class SearchRouteComponent implements OnInit {
       }
     });
     if (this.formSearchRoute.value.way === 'roundWay') {
-    this.routeRoundWayTemp.filter((item) => {
-      if (this.formSearchRoute.value.provinceEnd === item.provinceStart && this.formSearchRoute.value.provinceStart === item.provinceEnd) {
-        this.routeRoundWayID = item.routeID;
-      }
+      this.routeRoundWayTemp.filter((item) => {
+        if (this.formSearchRoute.value.provinceEnd === item.provinceStart && this.formSearchRoute.value.provinceStart === item.provinceEnd) {
+          this.routeRoundWayID = item.routeID;
+        }
 
-    });
-  }
+      });
+    }
   }
 
   public searRoute() {
-
+    //this.noActiveHomea()
+    this.dataShare.senddata();
+    this.activeNavigation = "aaaaaaaaaaaa";
     if (this.formSearchRoute.value.way === 'oneWay') {
       this.tripRequest = {
         routeOneWayID: this.routeOneWayID,
@@ -121,5 +127,10 @@ export class SearchRouteComponent implements OnInit {
 
     this._route.navigate(['/trip', this.tripRequest]);
 
+  }
+
+  noActiveHomea() {
+    console.log("chưa qua")
+    this.activeNav.emit(0)
   }
 }

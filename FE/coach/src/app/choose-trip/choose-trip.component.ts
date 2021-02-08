@@ -55,7 +55,7 @@ export class ChooseTripComponent implements OnInit {
       this.dataTripOneWay = response['content'];
       this.carValueOneWay = this.dataTripOneWay[0].carID;
     });
-    if ((this.requestRoundWay !== null)) {
+    if (this.requestRoundWay) {
       this.connectApi.post('trip/gettrip', this.requestRoundWay).subscribe((response) => {
         this.dataTripRoundWay = response['content'];
         this.carValueRoundWay = this.dataTripRoundWay[0].carID;
@@ -79,8 +79,8 @@ export class ChooseTripComponent implements OnInit {
   }
   goInfo() {
 
-    this.seatChooseDisabled = this.DataShare.changeDataTicketOneWayBS['seats']
-    console.log(this.seatChooseDisabled)
+    this.seatChooseDisabled = this.DataShare.changeDataTicketOneWayBS['seats'];
+    console.log(this.seatChooseDisabled);
   }
   goBack() {
     window.history.back();

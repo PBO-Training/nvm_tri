@@ -1,0 +1,42 @@
+<div class="toolbar">
+  <div class="row">
+    <div class="col-3 d-inline">
+      <img src="../assets/image/logo.png" alt="" width="70px" height="30px" routerLink>
+      <span>Hotline:</span>
+    </div>
+    <div class="col-4  offset-5  d-inline">
+      <div class="mr-3  float-right ">
+        <!-- <span class="mr-3 ">Nguyễn Văn A</span> -->
+        <fa-icon [icon]="faUser"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toolbar2">
+  <div class="row ">
+    <div class="col-12 text-center ">
+      <nav>
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-center">
+          <li [ngbNavItem]="activeNavigation">
+            <a ngbNavLink routerLink>Trang chủ</a>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink routerLink="/sche">Lịch trình</a>
+          </li>
+          <li ngbDropdown [ngbNavItem]="3" class="nav-item">
+            <a href (click)="false" class="nav-link" ngbNavLink ngbDropdownToggle>Manager</a>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem routerLink="/historyticket">History ticket</button>
+              <button ngbDropdownItem>Another action</button>
+              <button ngbDropdownItem>Something else here</button>
+              <div class="dropdown-divider"></div>
+              <button ngbDropdownItem>Separated link</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

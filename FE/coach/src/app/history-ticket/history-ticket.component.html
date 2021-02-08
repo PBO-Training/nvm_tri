@@ -23,7 +23,8 @@
         <div class="col-3 text-center">
           <label for="dateGo">Ngày đi</label>
           <div class="input-group ">
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="dateGo" ngbDatepicker #d2="ngbDatepicker" id="dateGo" name="dateGo">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="dateGo" ngbDatepicker
+              #d2="ngbDatepicker" id="dateGo" name="dateGo">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar " (click)="d2.toggle()" type="button">
                 <fa-icon [icon]="faCalendar"></fa-icon>
@@ -66,19 +67,5 @@
       </div>
     </form>
   </div>
-  <div class=" fieldset  p-3 mt-3">
-<table class="table table-striped">
-<thead>
-  <tr class="titleinfo border">
-    <th *ngFor="let header of titleHeader, let idx index">{{header}}</th>
-  </tr>
-</thead>
-<tbody>
-<tr *ngFor="let data of dataTable, let idx index ">
-  <td *ngFor="let datarow of data[idx]">a</td>
-
-</tr>
-</tbody>
-</table>
-  </div>
+  <app-table  [columHeader]="columHeader" [dataTable]="dataTable" [isAction]="true" [action]="action"></app-table>
 </div>

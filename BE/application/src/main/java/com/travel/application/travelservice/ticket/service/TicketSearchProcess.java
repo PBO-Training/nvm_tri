@@ -58,8 +58,9 @@ public class TicketSearchProcess {
 				res.setLicensePlates(((String) tuple.get("licensePlates")));
 				res.setSeat(((String)tuple.get("seats")));
 				res.setAmountSeats(((Integer)tuple.get("amountSeats")).intValue());
-				res.setProvinceStartName(((String)tuple.get("provinceStart")));
-				res.setProvinceEndName(((String)tuple.get("provinceEnd")));
+//				res.setProvinceStartName(((String)tuple.get("provinceStart")));
+//				res.setProvinceEndName(((String)tuple.get("provinceEnd")));
+				res.setRoute(((String)tuple.get("route")));
 				res.setPrice(((Double) tuple.get("price")).doubleValue());
 				res.setStatus(((String)tuple.get("status")));
 				if(((BigInteger) tuple.get("userID"))!=null)
@@ -82,7 +83,7 @@ public class TicketSearchProcess {
 		StringBuffer from = new StringBuffer(" FROM TICKET AS T ");
 		StringBuffer where = new StringBuffer(" WHERE 1 AND ");
 		select.append(
-				" T.ticket_id AS ticketID, T.date AS dateBuyTicket,TR.date AS dateGo , T.ticket_code AS ticketCode, C.license_plates AS licensePlates, T.seats AS seats, T.amount_seats AS amountSeats, provinceStart.name AS  provinceStart,  provinceEnd.name AS provinceEnd, T.price AS price, T.user_id AS userID,  ST.name AS status ");
+				" T.ticket_id AS ticketID, T.date AS dateBuyTicket,TR.date AS dateGo , T.ticket_code AS ticketCode, C.license_plates AS licensePlates, T.seats AS seats, T.amount_seats AS amountSeats, CONCAT(provinceStart.name, '  →  ' ,provinceEnd.name) AS route, T.price AS price, T.user_id AS userID,  ST.name AS status ");
 		from.append(" LEFT JOIN status_ticket AS ST ON T.status = ST.status_id ");
 		from.append(" LEFT JOIN trip  AS TR ON TR.trip_id = T.trip_id");
 		from.append(" LEFT JOIN route AS R ON TR.route_id = R.route_id");

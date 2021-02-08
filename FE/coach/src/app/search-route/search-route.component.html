@@ -1,10 +1,7 @@
 <div class="container">
-  <p>search-route works!</p>
-  <a>ádsd</a>
   <div class="form-group  justify-content-around">
     <fieldset class="border p-3 fieldset">
       <legend class="w-auto">Mua vé trực tuyến</legend>
-
       <form [formGroup]="formSearchRoute">
         <div class="row align-content-center">
           <label class="ml-3">
@@ -24,8 +21,6 @@
 
             </ng-select>
           </div>
-
-
           <div class="col-3">
             <p class="text-center">Điểm đến</p>
             <ng-select #NgSelectComponent formControlName="provinceEnd" (change)="changeProvinceEnd()">
@@ -48,8 +43,8 @@
           <div class="form-group col-3">
             <p class="text-center">Ngày về</p>
             <div class="input-group ">
-              <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="dateRoundWay" ngbDatepicker
-                #d2="ngbDatepicker" [disabled]="formSearchRoute.value.way!=='roundWay'? true : false">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="dateRoundWay"
+                ngbDatepicker #d2="ngbDatepicker" [disabled]="formSearchRoute.value.way!=='roundWay'? true : false">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar " (click)="d2.toggle()" type="button"
                   [disabled]="formSearchRoute.value.way!=='roundWay'? true : false">
@@ -58,13 +53,10 @@
               </div>
             </div>
           </div>
-
-          {{formSearchRoute.value | json}}
-         <legend class="legend2"> <button class="btn btn-success  " [disabled]="!formSearchRoute.valid" (click)="searRoute()"> Submit </button></legend>
-
+          <legend class="legend2"> <button class="btn btn-success  " [disabled]="!formSearchRoute.valid"
+              (click)="searRoute()"> Submit </button></legend>
         </div>
       </form>
-
     </fieldset>
   </div>
 </div>
