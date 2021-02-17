@@ -20,6 +20,8 @@ import { PaidSuccessComponent } from './paid-success/paid-success.component';
 import { HistoryTicketComponent } from './history-ticket/history-ticket.component';
 import { TableComponent } from './table/table.component';
 import { HomeComponent } from './home/home.component';
+import { MaintenanceSystemComponent } from './Modal/MaintenanceSystem/maintenance-system/maintenance-system.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -31,7 +33,9 @@ import { HomeComponent } from './home/home.component';
      PaidSuccessComponent,
      HistoryTicketComponent,
      TableComponent,
-     HomeComponent],
+     HomeComponent,
+     MaintenanceSystemComponent,
+     NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

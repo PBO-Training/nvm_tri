@@ -35,7 +35,7 @@ export class InfoTicketComponent implements OnInit {
     {
       ticketCode: this.dataTicketOneWay['codeTicket'],
       amountSeats: this.dataTicketOneWay['amout'],
-      date: new Date(),
+      dateBuyTicket: new Date(),
       seat: this.dataTicketOneWay['seats'].join(','),
       price: this.dataTicketOneWay['price'],
       tripID: this.dataTicketOneWay['tripID'],
@@ -49,7 +49,7 @@ export class InfoTicketComponent implements OnInit {
       {
         ticketCode: this.dataTicketRoundWay['codeTicket'],
         amountSeats: this.dataTicketRoundWay['amout'],
-        date: new Date(),
+        dateBuyTicket: new Date(),
         seat: this.dataTicketRoundWay['seats'].join(','),
         price: this.dataTicketRoundWay['price'],
         tripID: this.dataTicketRoundWay['tripID'],

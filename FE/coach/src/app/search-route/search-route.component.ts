@@ -7,8 +7,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { DataShareService } from '../Services/DataShare/data-share.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MaintenanceSystemComponent } from '../Modal/MaintenanceSystem/maintenance-system/maintenance-system.component';
 
 
 
@@ -28,7 +29,7 @@ export class SearchRouteComponent implements OnInit {
   model: NgbDateStruct;
   isDisable: boolean = false;
   null: null;
-  constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router, private dataShare: DataShareService) {
+  constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router, private dataShare: DataShareService, private modalService: NgbModal) {
     this.formSearchRoute = fb.group(
       {
         provinceStart: this.fb.control(null, [Validators.required]),
@@ -38,12 +39,12 @@ export class SearchRouteComponent implements OnInit {
         way: this.fb.control('oneWay', [Validators.required]),
 
 
-      }
+      },{validator: this.dateLessThan('dateOneWay', 'dateRoundWay')}
     );
   }
-  provinceStartValue: number;
-  provinceEndValue: number;
 
+  valueProvinceStart: number;
+  valueProvinceEnd: number;
   public provinceStarts: Province[];
   provinceEnds: Province[];
   route: Route[];
@@ -54,6 +55,7 @@ export class SearchRouteComponent implements OnInit {
   routeRoundWayID: number;
   tripRequest: Object
   isDisableRoundWay: boolean = true;
+  isDateGreater : boolean
 
 
   ngOnInit(): void {
@@ -64,13 +66,13 @@ export class SearchRouteComponent implements OnInit {
 
 
       this.provinceEnds = response['content'];
+    }, err => {
+      console.log("àv")
+      this.modalService.open(MaintenanceSystemComponent)
     });
     this.connectApi.get('/route/getall').subscribe((response) => {
       this.route = response['content'];
     });
-    // this.formSearchRoute.controls.provinceEnd.valueChanges.subscribe(val => {
-    //   this.formSearchRoute.patchValue({ provinceEnd: null });
-    // });
   }
   changeProvinceStart(event) {
     this.isDisableRoundWay = false;
@@ -133,4 +135,64 @@ export class SearchRouteComponent implements OnInit {
     console.log("chưa qua")
     this.activeNav.emit(0)
   }
+  choosePopularRoute(idx) {
+
+    if (idx === 1) {
+      this.autoChooseRoute('TTH','ĐN')
+    }
+    else if (idx === 2) {
+      this.autoChooseRoute('ĐN','TTH')
+
+    } else if (idx === 3) {
+      this.autoChooseRoute('TTH','HN')
+    }
+    else {
+      this.autoChooseRoute('HN','TTH')
+    }
+  }
+
+  autoChooseRoute (codeProvinceStart: string, codeProvinceEnd: string)
+  {
+    this.provinceStarts.filter(data => {
+
+      if (data.code == codeProvinceStart) {
+        this.changeProvinceStart(data.provinceID)
+        this.formSearchRoute.value.provinceStart = data.provinceID
+        this.formSearchRoute.patchValue(
+          {
+            provinceStart : data.provinceID
+          }
+        )
+      }
+      setTimeout(() => {
+        if (data.code == codeProvinceEnd) {
+          this.formSearchRoute.value.provinceEnd = data.provinceID
+          this.formSearchRoute.patchValue(
+            {
+              provinceEnd : data.provinceID
+            }
+          )
+
+          this.changeProvinceEnd()
+        }
+      }, 200);
+
+    });
+  }
+    dateLessThan(from: string, to: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let f = group.controls[from];
+      let t = group.controls[to];
+      const df = new Date(f.value);
+      const dt = new Date(t.value);
+
+      if (df.getTime() > dt.getTime() && f.value!==null && t.value!==null)  {
+
+        return {
+          dates: true
+        };
+      }
+      return {};
+    }
+}
 }
