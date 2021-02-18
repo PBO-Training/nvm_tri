@@ -1,5 +1,9 @@
 package com.travel.application.travelservice.ticket.controller;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Timer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travel.application.common.base.BaseResponse;
+import com.travel.application.travelservice.ticket.dto.MyTask;
+import com.travel.application.travelservice.ticket.dto.SeatsDisable;
 import com.travel.application.travelservice.ticket.dto.TicketRequest;
 import com.travel.application.travelservice.ticket.service.TicketService;
 
@@ -59,5 +65,27 @@ public class TicketController {
 		BaseResponse  rep = service.getHistoryTicket(req);
 		return new ResponseEntity<>(rep,HttpStatus.OK);
 	}
+	
+	@PostMapping("/savechooseseats")
+	@ResponseBody
+	public ResponseEntity<?> saveChooseSeats(@RequestBody List<Object> req)
+	{
+		SeatsDisable seatDisable = new SeatsDisable();
+		seatDisable.setList(req);
+		 MyTask myTask = new MyTask();
+		    Timer timer = new Timer();
+		    System.out.println("Currnet time: " + new Date());
+		    timer.schedule(myTask, 5000);
+		return new ResponseEntity<>(seatDisable.getList(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getchooseseats")
+	@ResponseBody
+	public ResponseEntity<?> getListChooseSeat() {
+		SeatsDisable seatDisable = new SeatsDisable();
+		return new ResponseEntity<>(seatDisable.getList(), HttpStatus.OK);
+
+	}
+	
 
 }

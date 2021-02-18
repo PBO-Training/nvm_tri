@@ -39,6 +39,9 @@ public class TripEntity {
 	@ManyToOne
 	@JoinColumn(name="status", nullable = false)
 	private StatusTripEntity status;
+	
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+	private List<ChooseSeatsDisableEntity> chooseSeatsDisableEntity;
 
 	public TripEntity() {
 	}

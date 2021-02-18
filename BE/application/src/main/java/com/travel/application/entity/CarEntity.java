@@ -37,6 +37,8 @@ public class CarEntity {
 	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
 	private List<TripEntity> trips;
 
+	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+	private List<ChooseSeatsDisableEntity> chooseSeatsDisableEntity;
 
 	public CarEntity() {
 		

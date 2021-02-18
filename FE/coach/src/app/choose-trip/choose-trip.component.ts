@@ -70,7 +70,9 @@ export class ChooseTripComponent implements OnInit {
   submitDataOneWay(data) {
     console.log(data);
     this.dataTicketOneWay = data;
+    this.seatChooseDisabled = [];
     this.DataShare.changeDataTicketOneWayBS(data);
+    this.seatChooseDisabled.push(data.seats);
   }
   submitDataRoundWay(data) {
     console.log(data);
@@ -78,8 +80,8 @@ export class ChooseTripComponent implements OnInit {
     this.DataShare.changeDataTicketRoundWayBS(data);
   }
   goInfo() {
+    this.DataShare.currentDataTicketOneWayBS.subscribe(data => this.seatChooseDisabled = data['seats']);
 
-    this.seatChooseDisabled = this.DataShare.changeDataTicketOneWayBS['seats'];
     console.log(this.seatChooseDisabled);
   }
   goBack() {

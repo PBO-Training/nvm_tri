@@ -23,12 +23,12 @@ export class SearchRouteComponent implements OnInit {
   faCalendar = faCalendarAlt;
   @ViewChild('NgSelectComponent') ngSelectComponent: NgSelectComponent;
   @Output() activeNav = new EventEmitter();
-  public activeNavigation: any;
+
 
   formSearchRoute: FormGroup;
   model: NgbDateStruct;
   isDisable: boolean = false;
-  null: null;
+
   constructor(private connectApi: ConnectApiService, private fb: FormBuilder, public _route: Router, private dataShare: DataShareService, private modalService: NgbModal) {
     this.formSearchRoute = fb.group(
       {
@@ -39,7 +39,7 @@ export class SearchRouteComponent implements OnInit {
         way: this.fb.control('oneWay', [Validators.required]),
 
 
-      },{validator: this.dateLessThan('dateOneWay', 'dateRoundWay')}
+      }, { validator: this.dateLessThan('dateOneWay', 'dateRoundWay') }
     );
   }
 
@@ -55,7 +55,7 @@ export class SearchRouteComponent implements OnInit {
   routeRoundWayID: number;
   tripRequest: Object
   isDisableRoundWay: boolean = true;
-  isDateGreater : boolean
+  isDateGreater: boolean
 
 
   ngOnInit(): void {
@@ -111,7 +111,6 @@ export class SearchRouteComponent implements OnInit {
   public searRoute() {
     //this.noActiveHomea()
     this.dataShare.senddata();
-    this.activeNavigation = "aaaaaaaaaaaa";
     if (this.formSearchRoute.value.way === 'oneWay') {
       this.tripRequest = {
         routeOneWayID: this.routeOneWayID,
@@ -132,27 +131,25 @@ export class SearchRouteComponent implements OnInit {
   }
 
   noActiveHomea() {
-    console.log("chưa qua")
     this.activeNav.emit(0)
   }
   choosePopularRoute(idx) {
 
     if (idx === 1) {
-      this.autoChooseRoute('TTH','ĐN')
+      this.autoChooseRoute('TTH', 'ĐN')
     }
     else if (idx === 2) {
-      this.autoChooseRoute('ĐN','TTH')
+      this.autoChooseRoute('ĐN', 'TTH')
 
     } else if (idx === 3) {
-      this.autoChooseRoute('TTH','HN')
+      this.autoChooseRoute('TTH', 'HN')
     }
     else {
-      this.autoChooseRoute('HN','TTH')
+      this.autoChooseRoute('HN', 'TTH')
     }
   }
 
-  autoChooseRoute (codeProvinceStart: string, codeProvinceEnd: string)
-  {
+  autoChooseRoute(codeProvinceStart: string, codeProvinceEnd: string) {
     this.provinceStarts.filter(data => {
 
       if (data.code == codeProvinceStart) {
@@ -160,7 +157,7 @@ export class SearchRouteComponent implements OnInit {
         this.formSearchRoute.value.provinceStart = data.provinceID
         this.formSearchRoute.patchValue(
           {
-            provinceStart : data.provinceID
+            provinceStart: data.provinceID
           }
         )
       }
@@ -169,7 +166,7 @@ export class SearchRouteComponent implements OnInit {
           this.formSearchRoute.value.provinceEnd = data.provinceID
           this.formSearchRoute.patchValue(
             {
-              provinceEnd : data.provinceID
+              provinceEnd: data.provinceID
             }
           )
 
@@ -179,20 +176,20 @@ export class SearchRouteComponent implements OnInit {
 
     });
   }
-    dateLessThan(from: string, to: string) {
-    return (group: FormGroup): {[key: string]: any} => {
+  dateLessThan(from: string, to: string) {
+    return (group: FormGroup): { [key: string]: any } => {
       let f = group.controls[from];
       let t = group.controls[to];
       const df = new Date(f.value);
       const dt = new Date(t.value);
 
-      if (df.getTime() > dt.getTime() && f.value!==null && t.value!==null)  {
+      if (df.getTime() > dt.getTime() && f.value !== null && t.value !== null) {
 
         return {
           dates: true
         };
       }
       return {};
-    }
-}
+    };
+  }
 }

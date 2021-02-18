@@ -35,6 +35,7 @@ export class SeatComponent implements OnInit, OnChanges {
       this.dataTrip = changes['dataTrip'].currentValue;
     }
     if ('seatChooseDisabled' in changes) {
+      console.log(changes['seatChooseDisabled'].currentValue)
       this.seatChooseDisabled = changes['seatChooseDisabled'].currentValue;
     }
     if ('carValueOneWay' in changes) {
@@ -71,7 +72,8 @@ export class SeatComponent implements OnInit, OnChanges {
       licensePlates: this.dataTripTemp.licensePlates,
       departureTime: this.dataTripTemp.departureTime,
       dateTrip: this.dataTripTemp.date,
-      tripID: this.dataTripTemp.tripID
+      tripID: this.dataTripTemp.tripID,
+      carID: this.dataTripTemp.carID
 
     };
     this.dataSeatCar.emit(this.dataSeat);
@@ -95,7 +97,7 @@ export class SeatComponent implements OnInit, OnChanges {
         }
         this.dataTripTemp = { ...data };
 
-        let request = {
+        const request = {
           'tripID': this.dataTripTemp.tripID
         };
         this.connectApi.post('ticket/getbytripid', request).subscribe((response) => {
@@ -116,9 +118,7 @@ export class SeatComponent implements OnInit, OnChanges {
                   }
                   else {
                     const seatSplit = dataT['seat'].split(',')
-
                     seatSplit.forEach((data) => {
-
                       this.seatsDisable.push(data);
                       // console.log(this.chooseSeats)
                     });
@@ -129,7 +129,6 @@ export class SeatComponent implements OnInit, OnChanges {
             });
           }
         }
-
         );
       }
     });

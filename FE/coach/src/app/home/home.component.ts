@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
 
   }
 
-
   active = 0;
   title = 'coach';
   activeNavigation: any = 1;
   ngOnInit(): void {
+
     this.dataShare.dataNav.subscribe((data) => {
       this.activeNavigation = data;
     });
