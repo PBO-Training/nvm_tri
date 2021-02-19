@@ -50,10 +50,25 @@ export class ChooseTripComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log('this.requestRoundWay')
     this.connectApi.post('trip/gettrip', this.requestOneWay).subscribe((response) => {
       this.dataTripOneWay = response['content'];
       this.carValueOneWay = this.dataTripOneWay[0].carID;
+    });
+
+    this.connectApi.get('chooseseats/getall').subscribe((response) => {
+      console.log(response)
+      this.dataTripOneWay.filter(data => {
+        response['content'].forEach(idx => {
+          if (data.carID === idx.carID && data.tripID === idx.tripID) {
+            const seats = idx.seats.split(',')
+            seats.forEach(element => {
+              this.seatChooseDisabled.push(element)
+              console.log(this.seatChooseDisabled)
+            });
+          };
+        });
+
+      })
     });
     if (this.requestRoundWay) {
       this.connectApi.post('trip/gettrip', this.requestRoundWay).subscribe((response) => {
@@ -81,7 +96,15 @@ export class ChooseTripComponent implements OnInit {
   }
   goInfo() {
     this.DataShare.currentDataTicketOneWayBS.subscribe(data => this.seatChooseDisabled = data['seats']);
-
+    const dataRequest =
+    {
+      "tripID": this.dataTicketOneWay['tripID'],
+      "carID": this.dataTicketOneWay['carID'],
+      "seats": this.dataTicketOneWay['seats'].toString()
+    };
+    this.connectApi.post("chooseseats/save", dataRequest).subscribe(response => {
+      this._route.navigate(['/infocustomer'])
+    })
     console.log(this.seatChooseDisabled);
   }
   goBack() {

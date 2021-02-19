@@ -104,13 +104,11 @@ export class SeatComponent implements OnInit, OnChanges {
           // console.log(this.dataTripTemp)
           let dataTicket: Ticket[];
           dataTicket = response['content'];
-
           this.seatsDisable = []
           if (dataTicket !== null) {
             dataTicket.filter(dataT => {
               if (dataT['tripID'] === this.dataTripTemp.tripID) {
                 if (this.dataTripTemp.carID === idCar) {
-
                   // console.log(dataT['seat'].length)
                   if (dataT['seat'].length === 3) {
                     this.seatsDisable.push(dataT['seat']);
@@ -123,7 +121,6 @@ export class SeatComponent implements OnInit, OnChanges {
                       // console.log(this.chooseSeats)
                     });
                   }
-
                 }
               }
             });
